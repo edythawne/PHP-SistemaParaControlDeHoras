@@ -54,9 +54,12 @@
     
     SELECT * FROM Alumnos;
     
-    INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES ('Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');
-    INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES ('Melanie', 'García', '7661127462', '7661127462', '7661127462');
-    INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES ('Sarahí', 'García Florencia', '7661218805', '7661218805', '7661218805');
+    -- INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES ('Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');
+    INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES 
+		('Melanie', 'García', '7661127462', '7661127462', '7661127462'),
+		('María Fernanda', 'Pérez Hernández', '7661020517', '7661020517', '7661020517'),
+		('Sarahí', 'García Florencia', '7661218805', '7661218805', '7661218805'), 
+        ('Juan Carlos', 'Cortez Pérez', '7661151621', '7661151621', '7661151621');
     
 	SELECT * FROM Horarios;
 
@@ -64,11 +67,46 @@
     
     SELECT TIME(created_at) FROM Administradores;
     
-    INSERT INTO Horarios (fk_alumno, al_entrada) VALUES (1, NOW());
-    UPDATE Horarios SET al_salida = (ADDDATE(NOW(), INTERVAL 3 HOUR)) WHERE fk_alumno = 1;
+    -- INSERT INTO Horarios (fk_alumno, al_entrada) VALUES (1, NOW());
+    -- UPDATE Horarios SET al_salida = (ADDDATE(NOW(), INTERVAL 3 HOUR)) WHERE fk_alumno = 1;
     
     SELECT al_salida, al_entrada, TIMESTAMPDIFF(HOUR, al_entrada, al_salida) FROM Horarios;
     
+    SELECT NOW();
     
+    INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
+		(1, '2019-06-06 14:00:00', '2019-06-06 19:30:00', '2019-06-06 14:00:00', '2019-06-06 19:30:00'),
+        (1, '2019-06-07 15:00:00', '2019-06-07 19:30:00', '2019-06-07 15:00:00', '2019-06-07 19:30:00'),
+        (1, '2019-06-10 14:30:00', '2019-06-10 19:30:00', '2019-06-10 14:30:00', '2019-06-10 19:30:00');
+        
+	INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
+		(2, '2019-06-06 14:00:00', '2019-06-06 19:30:00', '2019-06-06 14:00:00', '2019-06-06 19:30:00'),
+        (2, '2019-06-07 15:00:00', '2019-06-07 19:30:00', '2019-06-07 15:00:00', '2019-06-07 19:30:00'),
+        (2, '2019-06-10 15:00:00', '2019-06-10 19:30:00', '2019-06-10 15:00:00', '2019-06-10 19:30:00'),
+        (2, '2019-06-11 14:30:00', '2019-06-11 17:30:00', '2019-06-11 14:30:00', '2019-06-11 17:30:00'),
+        (2, '2019-06-12 15:00:00', '2019-06-12 17:30:00', '2019-06-12 15:00:00', '2019-06-12 17:30:00');
+    
+    INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
+		(3, '2019-06-06 14:00:00', '2019-06-06 19:30:00', '2019-06-06 14:00:00', '2019-06-06 19:30:00'),
+        (3, '2019-06-07 15:00:00', '2019-06-07 19:30:00', '2019-06-07 15:00:00', '2019-06-07 19:30:00'),
+        (3, '2019-06-10 14:30:00', '2019-06-10 19:30:00', '2019-06-10 14:30:00', '2019-06-10 19:30:00'),
+        (3, '2019-06-11 14:30:00', '2019-06-11 17:30:00', '2019-06-11 14:30:00', '2019-06-11 17:30:00'),
+        (3, '2019-06-12 15:00:00', '2019-06-12 17:30:00', '2019-06-12 15:00:00', '2019-06-12 17:30:00');
+        
+	INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
+		(4, '2019-06-06 14:00:00', '2019-06-06 17:00:00', '2019-06-06 14:00:00', '2019-06-06 17:00:00'),
+        (4, '2019-06-07 14:00:00', '2019-06-07 19:30:00', '2019-06-07 14:00:00', '2019-06-07 19:30:00'),
+        (4, '2019-06-10 14:00:00', '2019-06-10 19:00:00', '2019-06-10 14:00:00', '2019-06-10 19:00:00'),
+        (4, '2019-06-11 13:00:00', '2019-06-11 19:30:00', '2019-06-11 13:00:00', '2019-06-11 19:30:00'),
+        (4, '2019-06-12 13:30:00', '2019-06-12 19:30:00', '2019-06-12 13:30:00', '2019-06-12 19:30:00');
+        
+    -- Obtener las horas totales de un alumno
+	SELECT al_salida, al_entrada, TIMESTAMPDIFF(HOUR, al_entrada, al_salida) FROM Horarios WHERE fk_alumno = 2;
+	SELECT SUM(TIMESTAMPDIFF(HOUR, al_entrada, al_salida)) FROM Horarios WHERE fk_alumno = 2;
+    SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = 2;
+    
+    -- Obtener las fechas de los horarios
+    SELECT DATE_FORMAT(salida, '%T'), DATE(salida) FROM Horarios;
+    SELECT fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida FROM Horarios WHERE fk_alumno = 2;
     
     -- DESCRIBE mysql.time_zone_name;

@@ -21,6 +21,10 @@ class HomeController extends CI_Controller {
      * Index Method
      */
     public function index(){
+        if ($this -> session -> userdata('nombre')){
+            redirect('alumno');
+        }
+
         $data = array(
             'nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => ''),
         );
@@ -44,11 +48,7 @@ class HomeController extends CI_Controller {
             $this -> load -> model('user_model');
             $user = $this -> input -> post('user');
             $pass = $this -> input -> post('password');
-            $object = $this -> user_model -> searchUserForPassword($user, $pass);
-
-            //print_r($object);
-            //print_r('<br>');
-            //print_r($object[0]['nombre']);
+            $object = $this -> user_model -> buscarAlumno($user, $pass);
 
             if (sizeof($object) > 0){
                 $session_data = array(

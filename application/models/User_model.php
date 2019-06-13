@@ -17,13 +17,46 @@ class User_model extends CI_Model {
      * @param $password
      * @return mixed
      */
-    public function searchUserForPassword($user, $password){
+    public function buscarAlumno($user, $password){
         $this -> load -> database();
 
         $this -> db -> select('id_alumno, nombre, apellidos');
         $this -> db -> where('usuario', $user);
         $this -> db -> where('contrasena', $password);
         $query = $this -> db -> get('Alumnos');
+        $result =  $query -> result_array();
+        $this -> db -> close();
+
+        return $result;
+    }
+
+    /**
+     * Obtener las horas cumplidas de un alumno
+     * @param $id_alumno
+     * @return mixed
+     */
+    public function horasCumplidas($id_alumno){
+        $this -> load -> database();
+        $sql = "SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = $id_alumno";
+        $query = $this -> db -> query($sql);
+        $result =  $query -> result_array();
+        $this -> db -> close();
+
+        return $result;
+    }
+
+    /**
+     * Mostrar las fechas de los registros
+     * @param $id_alumno
+     * @return mixed
+     */
+    public function mostrarRegistroHorasCumplidas($id_alumno){
+        $this -> load -> database();
+
+        $sql = "SELECT fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') ".
+                    "AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida FROM Horarios WHERE fk_alumno = $id_alumno ".
+                    "ORDER BY fecha_entrada DESC";
+        $query = $this -> db -> query($sql);
         $result =  $query -> result_array();
         $this -> db -> close();
 
