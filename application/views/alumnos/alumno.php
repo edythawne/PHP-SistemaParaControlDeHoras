@@ -26,8 +26,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <li>
         <a class="subheader">Ajustes</a>
     </li>
-    <li onclick="cerrar_session()">
-        <a href="<?php echo base_url('index.php/alumno/cerrarsesion')  ?>"><i class="material-icons">close</i>Cerrar Session</a>
+    <li>
+        <a href="<?php echo base_url('index.php/alumno/cerrar_sesion')  ?>"><i class="material-icons">close</i>Cerrar Session</a>
     </li>
 </ul>
 <!-- -->

@@ -48,7 +48,11 @@ class AlumnoController extends CI_Controller {
     /**
      * Cerrar sesion
      */
-    private function cerrarSesion(){
-        print_r('cda');
+    public function cerrarSesion(){
+        $this -> session -> sess_destroy();
+
+        if (!$this -> session -> userdata('nombre')){
+            redirect('home');
+        }
     }
 }
