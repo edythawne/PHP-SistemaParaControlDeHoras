@@ -84,14 +84,16 @@
         (2, '2019-06-07 15:00:00', '2019-06-07 19:15:00', '2019-06-07 15:00:00', '2019-06-07 19:15:00'),
         (2, '2019-06-10 15:00:00', '2019-06-10 19:00:00', '2019-06-10 15:00:00', '2019-06-10 19:00:00'),
         (2, '2019-06-11 14:30:00', '2019-06-11 19:30:00', '2019-06-11 14:30:00', '2019-06-11 19:30:00'),
-        (2, '2019-06-12 15:00:00', '2019-06-12 19:20:00', '2019-06-12 15:00:00', '2019-06-12 19:20:00');
+        (2, '2019-06-12 15:00:00', '2019-06-12 19:20:00', '2019-06-12 15:00:00', '2019-06-12 19:20:00'),
+        (2, '2019-06-13 14:00:00', '2019-06-13 19:30:00', '2019-06-13 14:00:00', '2019-06-13 19:30:00');
     
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
 		(3, '2019-06-06 14:00:00', '2019-06-06 19:30:00', '2019-06-06 14:00:00', '2019-06-06 19:30:00'),
         (3, '2019-06-07 15:00:00', '2019-06-07 19:15:00', '2019-06-07 15:00:00', '2019-06-07 19:15:00'),
         (3, '2019-06-10 14:30:00', '2019-06-10 19:00:00', '2019-06-10 14:30:00', '2019-06-10 19:00:00'),
         (3, '2019-06-11 14:30:00', '2019-06-11 17:00:00', '2019-06-11 14:30:00', '2019-06-11 17:00:00'),
-        (3, '2019-06-12 15:00:00', '2019-06-12 19:20:00', '2019-06-12 15:00:00', '2019-06-12 19:20:00');
+        (3, '2019-06-12 15:00:00', '2019-06-12 19:20:00', '2019-06-12 15:00:00', '2019-06-12 19:20:00'),
+        (3, '2019-06-13 14:00:00', '2019-06-13 19:30:00', '2019-06-13 14:00:00', '2019-06-13 19:30:00');
         
 	INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES 
 		(4, '2019-06-06 14:00:00', '2019-06-06 17:00:00', '2019-06-06 14:00:00', '2019-06-06 17:00:00'),
@@ -99,7 +101,8 @@
         (4, '2019-06-07 14:00:00', '2019-06-07 19:15:00', '2019-06-07 14:00:00', '2019-06-07 19:15:00'),
         (4, '2019-06-10 14:00:00', '2019-06-10 19:00:00', '2019-06-10 14:00:00', '2019-06-10 19:00:00'),
         (4, '2019-06-11 13:00:00', '2019-06-11 19:30:00', '2019-06-11 13:00:00', '2019-06-11 19:30:00'),
-        (4, '2019-06-12 13:30:00', '2019-06-12 18:00:00', '2019-06-12 13:30:00', '2019-06-12 18:00:00');
+        (4, '2019-06-12 13:30:00', '2019-06-12 18:00:00', '2019-06-12 13:30:00', '2019-06-12 18:00:00'),
+        (4, '2019-06-13 13:30:00', '2019-06-13 18:00:00', '2019-06-13 13:30:00', '2019-06-13 18:00:00');
         
     -- Obtener las horas totales de un alumno
 	SELECT al_salida, al_entrada, TIMESTAMPDIFF(HOUR, al_entrada, al_salida) FROM Horarios WHERE fk_alumno = 2;
@@ -111,7 +114,12 @@
     SELECT fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida FROM Horarios WHERE fk_alumno = 2;
     
     -- Obtener la lista de los tiempo de los alumnos
-	SELECT Alumnos.nombre, Alumnos.apellidos, DATE(Horarios.al_salida), SUM(TIMESTAMPDIFF(MINUTE, Horarios.al_entrada, Horarios.al_salida)) DIV 60 FROM Alumnos, Horarios
-    JOIN Alumnos JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno;
+	SELECT Alumnos.id_alumno, Alumnos.nombre, Alumnos.apellidos, DATE(Horarios.al_salida), SUM(TIMESTAMPDIFF(MINUTE, Horarios.al_entrada, Horarios.al_salida)) DIV 60 
+    FROM Horarios 
+    INNER JOIN Alumnos ON Alumnos.id_alumno = Horarios.fk_alumno;
+    
+    SELECT DISTINCT Alumnos.id_alumno, Alumnos.nombre, Alumnos.apellidos, DATE(Horarios.al_salida) AS salida
+    FROM Alumnos
+    INNER JOIN Horarios ON Alumnos.id_alumno = 2;
     
     -- DESCRIBE mysql.time_zone_name;

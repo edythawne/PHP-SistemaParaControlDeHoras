@@ -28,7 +28,7 @@ class AlumnoController extends CI_Controller {
         }
 
         // Mostrar algunos datos
-        $data = array('nav_params' => array('toolbar' => 'Registro', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => ''));
+        $data = array('nav_params' => array('toolbar' => 'Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => ''));
 
         // Consultas
         $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
@@ -43,5 +43,12 @@ class AlumnoController extends CI_Controller {
         $this -> load -> view('html/header', $data);
         $this -> load -> view('alumnos/alumno', $dataStudent);
         $this -> load -> view('html/footer');
+    }
+
+    /**
+     * Cerrar sesion
+     */
+    private function cerrarSesion(){
+        print_r('cda');
     }
 }
