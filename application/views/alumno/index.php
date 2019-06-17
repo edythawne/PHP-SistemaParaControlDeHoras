@@ -1,36 +1,9 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('alumno/navbar')
 ?>
 
-<!-- SideNav -->
-<ul id="slide-out" class="sidenav">
-    <li>
-        <div class="user-view">
-            <div class="background grey darken-4">
-
-            </div>
-            <a href="#user"><img class="circle" src="<?php echo img_url('profile.png'); ?>"></a>
-            <a href="#name"><span class="white-text name"><?php echo $_SESSION['nombre']; ?></span></a>
-            <a href="#email"><span class="white-text email"><?php echo $_SESSION['apellidos'];  ?></span></a>
-        </div>
-    </li>
-    <li>
-        <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
-    </li>
-    <li>
-        <a href="#!">Second Link</a>
-    </li>
-    <li>
-        <div class="divider"></div>
-    </li>
-    <li>
-        <a class="subheader">Ajustes</a>
-    </li>
-    <li>
-        <a href="<?php echo base_url('index.php/alumno/cerrar_sesion')  ?>"><i class="material-icons">close</i>Cerrar Session</a>
-    </li>
-</ul>
-<!-- -->
+<!-- Main -->
 
 <main style="margin: 20px;">
     <div>
@@ -71,20 +44,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                             <table class="highlight">
                                 <thead>
-                                    <tr>
-                                        <th>Fecha</th>
-                                        <th>Hora de Entrada</th>
-                                        <th>Hora de Salida</th>
-                                    </tr>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Hora de Entrada</th>
+                                    <th>Hora de Salida</th>
+                                </tr>
                                 </thead>
                                 <tbody>
-                                    <?php foreach ($registroHorasCumplidas as $rhc): ?>
+                                <?php foreach ($registroHorasCumplidas as $rhc): ?>
                                     <tr>
                                         <td><?php echo $rhc['fecha_entrada']; ?></td>
                                         <td><?php echo $rhc['hora_entrada']; ?></td>
                                         <td><?php echo $rhc['hora_salida']; ?></td>
                                     </tr>
-                                    <?php endforeach; ?>
+                                <?php endforeach; ?>
                                 </tbody>
                             </table>
 
@@ -96,11 +69,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         </div>
     </div>
+
+    <!-- fab -->
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/alumno/create_day') ?>">
+            <i class="material-icons">add</i>
+        </a>
+    </div>
+
 </main>
 
-<!-- javascript -->
-<script type="application/javascript">
-    function cerrar_session() {
+<!-- -->
 
-    }
-</script>
+<?php
+    $this -> load -> view('html/scripts');
+?>
+<?php
+    $this -> load -> view('html/footer');
+?>
+

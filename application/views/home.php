@@ -1,11 +1,16 @@
 <?php
-    defined('BASEPATH') OR exit('No direct script access allowed');
+    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => '')));
 ?>
+
+<!-- Main -->
 
 <main style="margin: 20px;">
     <div>
         <div class="row">
-            <div class="col s6 offset-s3">
+
+            <div class="col s1 m2 l3"></div>
+
+            <div class="col s10 m8 l6">
                 <div class="card">
                     <div class="card-content">
                         <span class="card-title">Bienvenido</span>
@@ -41,6 +46,18 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col s1 m2 l3"></div>
         </div>
     </div>
 </main>
+
+<!-- -->
+
+<?php
+    $this -> load -> view('html/scripts');
+?>
+
+<?php
+    $this -> load -> view('html/footer');
+?>

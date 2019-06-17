@@ -62,4 +62,18 @@ class User_model extends CI_Model {
 
         return $result;
     }
+
+    /**
+     * Agregar un nuevo registro
+     * @param $data
+     * @return mixed
+     */
+    public function agregarRegistro($data){
+        $this -> load -> database();
+        //$this -> db -> set($data);
+        $result = $this -> db -> insert('Horarios', $data);
+        $this -> db -> close();
+
+        return $result;
+    }
 }

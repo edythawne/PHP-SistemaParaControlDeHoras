@@ -25,13 +25,7 @@ class HomeController extends CI_Controller {
             redirect('alumno');
         }
 
-        $data = array(
-            'nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => ''),
-        );
-
-        $this -> load -> view('html/header', $data);
         $this -> load -> view('home');
-        $this -> load -> view('html/footer');
     }
 
     /**
@@ -55,7 +49,7 @@ class HomeController extends CI_Controller {
                     'id_alumno' => $object[0]['id_alumno'],
                     'nombre' => $object[0]['nombre'],
                     'apellidos' => $object[0]['apellidos'],
-                    'access' => true
+                    'access' => 'true'
                 );
                 $this -> session -> set_userdata($session_data);
                 redirect('alumno');
