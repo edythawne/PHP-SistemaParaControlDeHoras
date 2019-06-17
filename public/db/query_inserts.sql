@@ -6,11 +6,8 @@
     -- INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES
     -- ('Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');
 
-    INSERT INTO Alumnos(nombre, apellidos, telefono, usuario, contrasena) VALUES
-		('Melanie', 'García', '7661127462', '7661127462', '7661127462'),
-		('María Fernanda', 'Pérez Hernández', '7661020517', '7661020517', '7661020517'),
-		('Sarahí', 'García Florencia', '7661218805', '7661218805', '7661218805'),
-        ('Juan Carlos', 'Cortez Pérez', '7661151621', '7661151621', '7661151621');
+    -- INSERT FOR ALUMNOS CONSULTAR
+
 
     -- Insertar Horarios
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
