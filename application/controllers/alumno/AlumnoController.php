@@ -85,27 +85,55 @@ class AlumnoController extends CI_Controller {
      */
     public function saveRegister(){
         // Validar el formulario
-        $this -> form_validation -> set_rules('date', 'Date', 'required');
-        $this -> form_validation -> set_rules('time', 'Time', 'required');
+        $this -> form_validation -> set_rules('date', 'Date', 'required|callback_check_date_format');
+        $this -> form_validation -> set_rules('time', 'Time', 'required|callback_check_time_format');
 
         if ($this -> form_validation -> run() === FALSE){
             $this -> store();
         } else {
-            $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
+            /**
+             * $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array(
-                'fk_alumno' => $this -> session -> userdata('id_alumno'),
-                'al_entrada' => $format_date.' '.$format_time
+            'fk_alumno' => $this -> session -> userdata('id_alumno'),
+            'al_entrada' => $format_date.' '.$format_time
             );
 
             if ($this -> user_model -> agregarRegistro($data) === 1){
-                $this -> session -> set_tempdata('status_register', '1', 300);
-                redirect('alumno');
+            $this -> session -> set_tempdata('status_register', '1', 300);
+            redirect('alumno');
             } else {
-                $this -> session -> set_tempdata('status_register', '0', 300);
+            $this -> session -> set_tempdata('status_register', '0', 300);
             }
+             */
         }
     }
 
+    /**
+     * Validación de la hora actual
+     * @param $string
+     * @return bool
+     */
+    public function check_time_format($string){
+        if (strpos($string, 'AM')){
+            $this -> form_validation -> set_message('check_time_format', 'Ingrese PM en vez de AM a la hora');
+            return false;
+        } else {
+            return true;
+        }
+    }
 
+    /**
+     * Validación de la fecha actual
+     * @param $string
+     * @return bool
+     */
+    public function check_date_format($string){
+        if (date('Y-m-d') ===  $string){
+            return true;
+        } else {
+            $this -> form_validation -> set_message('check_date_format', 'Ingrese la fecha actual');
+            return false;
+        }
+    }
 }

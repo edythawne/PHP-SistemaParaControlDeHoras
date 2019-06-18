@@ -24,13 +24,13 @@
                             <div class="input-field col s12 m6 l6">
                                 <input placeholder="766 ..." id="user" name="user" type="text" class="validat" disabled value="<?php echo $_SESSION['nombre']; ?>">
                                 <label for="user">Nombre</label>
-                                <?php echo form_error('nombre', '<span class="helper-text">', '</span>'); ?>
+                                <?php echo form_error('user', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <div class="input-field col s12 m6 l6">
                                 <input placeholder="766 ..." id="first_name" name="first_name" type="text" class="validate" disabled value="<?php echo $_SESSION['apellidos']; ?>">
                                 <label for="first_name">Apellidos</label>
-                                <?php echo form_error('apellidos', '<span class="helper-text">', '</span>'); ?>
+                                <?php echo form_error('first_name', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <!-- <div class="input-field col s12 m6 l4">
@@ -42,13 +42,13 @@
                             <div class="input-field col s12 m6 l6">
                                 <input placeholder="766 ..." id="date" name="date" type="text" class="datepicker validate" >
                                 <label for="date">Fecha de Entrada</label>
-                                <?php echo form_error('apellidos', '<span class="helper-text">', '</span>'); ?>
+                                <?php echo form_error('date', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <div class="input-field col s12 m6 l6">
                                 <input placeholder="766 ..." id="time" name="time" type="text" class="timepicker validate" value="<?php echo date('h:i A'); ?>">
                                 <label for="time">Hora de Entrada</label>
-                                <?php echo form_error('apellidos', '<span class="helper-text">', '</span>'); ?>
+                                <?php echo form_error('time', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <div class="right">
