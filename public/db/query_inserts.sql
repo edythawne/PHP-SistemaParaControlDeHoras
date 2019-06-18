@@ -1,5 +1,4 @@
-
-    -- Insertar administrador
+   -- Insertar administrador
     INSERT INTO Administradores(nombre, apellidos, usuario, contrasena) VALUES ('Eduardo', 'Ramires Perez', 'edythawne', 'qwertyui');
 
     -- Insertar Alumnos
@@ -59,5 +58,3 @@
         
 	INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
         (6, '2019-06-17 14:30:00', '2019-06-17 19:00:00', '2019-06-17 14:30:00', '2019-06-17 19:00:00');
-        
-        

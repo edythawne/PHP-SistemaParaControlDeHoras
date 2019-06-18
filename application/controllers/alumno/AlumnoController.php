@@ -107,10 +107,10 @@ class AlumnoController extends CI_Controller {
      * @param $string
      */
     public function showMessage($string){
-        print_r($string);
         if (!empty($string)){
             echo "
                 <script>
+                      console.log('$string');
                       M.toast({html: '$string'});
                 </script>
             ";
