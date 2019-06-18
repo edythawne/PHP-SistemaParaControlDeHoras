@@ -29,13 +29,11 @@ class AlumnoController extends CI_Controller {
         $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
         $consult_2 = $this -> user_model -> mostrarRegistroHorasCumplidas($this -> session -> userdata('id_alumno'));
 
-        $dataStudent = array(
-            'horasCumplidas' => $consult_1[0]['HorasCumplidas'],
-            'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
-            'registroHorasCumplidas' => $consult_2
-        );
+        $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']), 'registroHorasCumplidas' => $consult_2);
 
         $this -> load -> view('alumno/index', $dataStudent);
+
+        $this->showMessage("xda");
     }
 
     /**
@@ -91,21 +89,31 @@ class AlumnoController extends CI_Controller {
         if ($this -> form_validation -> run() === FALSE){
             $this -> store();
         } else {
-            /**
-             * $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
+            $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
-            $data = array(
-            'fk_alumno' => $this -> session -> userdata('id_alumno'),
-            'al_entrada' => $format_date.' '.$format_time
-            );
+            $data = array('fk_alumno' => $this -> session -> userdata('id_alumno'), 'al_entrada' => $format_date.' '.$format_time);
 
             if ($this -> user_model -> agregarRegistro($data) === 1){
-            $this -> session -> set_tempdata('status_register', '1', 300);
-            redirect('alumno');
+                $this -> session -> set_tempdata('status_register', '1', 300);
+                redirect('alumno');
             } else {
-            $this -> session -> set_tempdata('status_register', '0', 300);
+                $this -> session -> set_tempdata('status_register', '0', 300);
             }
-             */
+        }
+    }
+
+    /**
+     * Mostrar los mensajes en pantalla
+     * @param $string
+     */
+    public function showMessage($string){
+        print_r($string);
+        if (!empty($string)){
+            echo "
+                <script>
+                      M.toast({html: '$string'});
+                </script>
+            ";
         }
     }
 
