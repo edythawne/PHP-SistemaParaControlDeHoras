@@ -8,7 +8,7 @@
 		(1, 'Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');
         
 	-- Registro de Pruebas
-     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
+    INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
 		(1, '2019-06-06 14:00:00', '2019-06-06 19:30:00', '2019-06-06 14:00:00', '2019-06-06 19:30:00'),
         (1, '2019-06-07 15:00:00', '2019-06-07 17:00:00', '2019-06-07 15:00:00', '2019-06-07 17:00:00'),
         (1, '2019-06-10 14:30:00', '2019-06-10 19:00:00', '2019-06-10 14:30:00', '2019-06-10 19:00:00');
