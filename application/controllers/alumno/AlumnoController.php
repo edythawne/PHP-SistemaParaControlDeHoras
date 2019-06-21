@@ -28,12 +28,12 @@ class AlumnoController extends CI_Controller {
         // Consultas
         $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
         $consult_2 = $this -> user_model -> mostrarRegistroHorasCumplidas($this -> session -> userdata('id_alumno'));
+        $consult_3 = $this -> user_model -> existeRegistroHoy($this -> session -> userdata('id_alumno'));
 
-        $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']), 'registroHorasCumplidas' => $consult_2);
+        $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
+            'registroHorasCumplidas' => $consult_2, 'existeRegistroHoy' => $consult_3);
 
         $this -> load -> view('alumno/index', $dataStudent);
-
-        $this->showMessage("xda");
     }
 
     /**
@@ -48,8 +48,12 @@ class AlumnoController extends CI_Controller {
      * Actualización
      * @param $params
      */
-    public function update($params){
+    public function update(){
+        $this -> validateSession();
 
+        $consulta_1 = "";
+
+        $this -> load -> view('alumno/update');
     }
 
     /**
@@ -93,27 +97,12 @@ class AlumnoController extends CI_Controller {
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('fk_alumno' => $this -> session -> userdata('id_alumno'), 'al_entrada' => $format_date.' '.$format_time);
 
-            if ($this -> user_model -> agregarRegistro($data) === 1){
-                $this -> session -> set_tempdata('status_register', '1', 300);
+            if ($this -> user_model -> agregarRegistro($data) == 1){
+                $this->session->set_userdata('message', '¡Hora de entrada registrada!');
                 redirect('alumno');
             } else {
-                $this -> session -> set_tempdata('status_register', '0', 300);
+                $this->session->set_userdata('message', '¡Error al registrar hora de entrada!');
             }
-        }
-    }
-
-    /**
-     * Mostrar los mensajes en pantalla
-     * @param $string
-     */
-    public function showMessage($string){
-        if (!empty($string)){
-            echo "
-                <script>
-                      console.log('$string');
-                      M.toast({html: '$string'});
-                </script>
-            ";
         }
     }
 

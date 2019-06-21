@@ -70,10 +70,27 @@ class User_model extends CI_Model {
      */
     public function agregarRegistro($data){
         $this -> load -> database();
-        //$this -> db -> set($data);
         $result = $this -> db -> insert('Horarios', $data);
         $this -> db -> close();
 
+        print_r($result);
         return $result;
+    }
+
+    /**
+     * @param $id_alumno
+     * @return int
+     */
+    public function existeRegistroHoy($id_alumno){
+        $this -> load -> database();
+
+        $date = date('Y-m-d');
+        $sql = "SELECT * FROM Horarios WHERE fk_alumno = $id_alumno AND DATE(al_entrada) = '$date';";
+        $query = $this -> db -> query($sql);
+        $result =  $query -> result_array();
+
+        $this -> db -> close();
+
+        return count($result);
     }
 }

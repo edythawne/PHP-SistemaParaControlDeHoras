@@ -9,6 +9,7 @@
 
     -- Seleccionar la fecha en la que se creo un adminisgtrador
     SELECT TIME(created_at) FROM Administradores;
+	SELECT DATE(NOW());
 
     -- INSERT INTO Horarios (fk_alumno, al_entrada) VALUES (1, NOW());
     -- UPDATE Horarios SET al_salida = (ADDDATE(NOW(), INTERVAL 3 HOUR)) WHERE fk_alumno = 1;
@@ -35,4 +36,11 @@
     FROM Alumnos
     INNER JOIN Horarios ON Alumnos.id_alumno = 2;
 
+	-- Checar si existe regristro en la fecha actual
+    SELECT * FROM Horarios WHERE fk_alumno = 3 AND DATE(al_entrada) = '2019-06-19';
+    
+    SELECT * FROM Horarios WHERE fk_alumno = 1 AND DATE(al_entrada) = '2019-06-20';
+
+	SELECT * FROM Horarios WHERE fk_alumno = 1 AND DATE(al_entrada) = DATE(NOW()) AND salida IS NULL;
+    
     -- DESCRIBE mysql.time_zone_name;

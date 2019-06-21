@@ -1,5 +1,5 @@
 <?php
-    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Crear Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
     $this -> load -> view('alumno/navbar');
 ?>
 
@@ -14,7 +14,7 @@
             <div class="col s10 m8 l8">
                 <div class="card">
                     <div class="card-content ">
-                        <span class="card-title">Agregar Nuevo Registro</span>
+                        <span class="card-title">Actualizar Registro</span>
                         <div class="row" style="padding: 10px;">
 
                             <?php

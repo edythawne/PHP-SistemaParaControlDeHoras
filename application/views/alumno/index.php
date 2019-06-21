@@ -1,13 +1,8 @@
 <?php
     $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
-    $this -> load -> view('alumno/navbar')
+    $this -> load -> view('alumno/navbar');
+    $this -> load -> view('html/notifier');
 ?>
-
-<!-- Main -->
-<div >
-
-
-</div>
 
 <main style="margin: 20px;">
     <div>
@@ -75,19 +70,35 @@
     </div>
 
     <!-- fab -->
+    <?php
+        if ($existeRegistroHoy === 0):
+    ?>
+
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
         <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/alumno/create_day') ?>">
             <i class="material-icons">add</i>
         </a>
     </div>
 
+    <?php
+        else :
+    ?>
+
+    <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/alumno/update_day') ?>">
+            <i class="material-icons">update</i>
+        </a>
+    </div>
+
+    <?php
+        endif;
+    ?>
+
+
+
 </main>
 
 <!-- -->
-
-<?php
-    $this -> load -> view('html/scripts');
-?>
 <?php
     $this -> load -> view('html/footer');
 ?>

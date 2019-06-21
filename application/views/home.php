@@ -53,11 +53,6 @@
 </main>
 
 <!-- -->
-
-<?php
-    $this -> load -> view('html/scripts');
-?>
-
 <?php
     $this -> load -> view('html/footer');
 ?>
