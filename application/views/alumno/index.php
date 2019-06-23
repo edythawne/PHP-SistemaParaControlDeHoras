@@ -1,6 +1,7 @@
 <?php
-    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
-    $this -> load -> view('alumno/navbar');
+    $this -> load -> view('html/header', array('toolbar' => 'Registros'));
+    $this -> load -> view('alumno/nav_slide');
+    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Registros', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
     $this -> load -> view('html/notifier');
 ?>
 
@@ -71,7 +72,7 @@
 
     <!-- fab -->
     <?php
-        if ($existeRegistroHoy === 0):
+        if ($checarRegistroHoy == 0):
     ?>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -81,7 +82,13 @@
     </div>
 
     <?php
-        else :
+        elseif($checarRegistroHoyCompleto == 0):
+    ?>
+
+    <!-- Nothing! -->
+
+    <?php
+        else:
     ?>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">

@@ -1,5 +1,7 @@
 <?php
-    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('html/header', array('toolbar' => 'Ford 32 - Horarios'));
+    $this -> load -> view('alumno/nav_slide');
+    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => '')));
 ?>
 
 <!-- Main -->

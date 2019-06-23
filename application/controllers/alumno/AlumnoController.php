@@ -28,10 +28,11 @@ class AlumnoController extends CI_Controller {
         // Consultas
         $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
         $consult_2 = $this -> user_model -> mostrarRegistroHorasCumplidas($this -> session -> userdata('id_alumno'));
-        $consult_3 = $this -> user_model -> existeRegistroHoy($this -> session -> userdata('id_alumno'));
+        $consult_3 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno'));
+        $consult_4 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno')));
 
         $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
-            'registroHorasCumplidas' => $consult_2, 'existeRegistroHoy' => $consult_3);
+            'registroHorasCumplidas' => $consult_2, 'checarRegistroHoy' => $consult_3, 'checarRegistroHoyCompleto' => $consult_4);
 
         $this -> load -> view('alumno/index', $dataStudent);
     }
@@ -41,7 +42,12 @@ class AlumnoController extends CI_Controller {
      */
     public function store(){
         $this -> validateSession();
-        $this -> load -> view('alumno/create');
+
+        if ($this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno')) == 0){
+            $this -> load -> view('alumno/create');
+        } else {
+            $this->index();
+        }
     }
 
     /**
@@ -49,11 +55,22 @@ class AlumnoController extends CI_Controller {
      * @param $params
      */
     public function update(){
+        // Validar sesion
         $this -> validateSession();
 
-        $consulta_1 = "";
+        // Validar si ya se actualizo registro
+        if (count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno'))) == 1){
 
-        $this -> load -> view('alumno/update');
+            $consulta_1 = $this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno'));
+            $dataStudent =  array('registroHoy' => $consulta_1);
+
+            // Guardar hora de entrada en session
+            $this -> session -> set_userdata('in_time', date('H:i:s', strtotime($consulta_1[0]['al_entrada'])));
+
+            $this -> load -> view('alumno/update', $dataStudent);
+        } else {
+            $this->index();
+        }
     }
 
     /**
@@ -103,6 +120,46 @@ class AlumnoController extends CI_Controller {
             } else {
                 $this->session->set_userdata('message', '¡Error al registrar hora de entrada!');
             }
+        }
+    }
+
+    /**
+     * Actualizar registro
+     */
+    public function updateRegister(){
+        // Validar el formulario
+        $this -> form_validation -> set_rules('time', 'Time', 'required|callback_check_time_inout|callback_check_time_format');
+
+        if ($this -> form_validation -> run() == FALSE){
+            $this -> update();
+        } else {
+            $format_date = date('Y-m-d');
+            $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
+            $data = array('al_salida' => $format_date.' '.$format_time);
+
+            if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
+                $this->session->set_userdata('message', '¡Hora de salida registrada!');
+                redirect('alumno');
+            } else {
+                $this->session->set_userdata('message', '¡Error al registrar hora de salida!');
+            }
+        }
+    }
+
+    /**
+     * Checar que la hora de salida sea mayor a la de entrada
+     * @param $string
+     * @return bool
+     */
+    public function check_time_inout($string){
+        $in_time = $this -> session -> userdata('in_time');
+        $in_out = date('H:i:s', strtotime($string));
+
+        if (strtotime($in_out) > strtotime($in_time)){
+            return true;
+        } else {
+            $this -> form_validation -> set_message('check_time_inout', 'Ingrese una Hora de Salida mayor a la de Entrada');
+            return false;
         }
     }
 

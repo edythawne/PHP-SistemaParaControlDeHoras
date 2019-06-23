@@ -37,9 +37,12 @@ class User_model extends CI_Model {
      */
     public function horasCumplidas($id_alumno){
         $this -> load -> database();
-        $sql = "SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = $id_alumno";
-        $query = $this -> db -> query($sql);
+
+        $this -> db -> select("SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas");
+        $this -> db -> where("fk_alumno", $id_alumno);
+        $query = $this -> db -> get("Horarios");
         $result =  $query -> result_array();
+        
         $this -> db -> close();
 
         return $result;
@@ -53,11 +56,12 @@ class User_model extends CI_Model {
     public function mostrarRegistroHorasCumplidas($id_alumno){
         $this -> load -> database();
 
-        $sql = "SELECT fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') ".
-                    "AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida FROM Horarios WHERE fk_alumno = $id_alumno ".
-                    "ORDER BY fecha_entrada DESC";
-        $query = $this -> db -> query($sql);
+        $this -> db -> select("fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida");
+        $this -> db -> where("fk_alumno", $id_alumno);
+        $this -> db -> order_by("fecha_entrada", "DESC");
+        $query = $this -> db -> get('Horarios');
         $result =  $query -> result_array();
+
         $this -> db -> close();
 
         return $result;
@@ -78,19 +82,59 @@ class User_model extends CI_Model {
     }
 
     /**
+     * Checar si existe un registro hoy
      * @param $id_alumno
      * @return int
      */
-    public function existeRegistroHoy($id_alumno){
+    public function checarRegistroHoy($id_alumno){
         $this -> load -> database();
 
-        $date = date('Y-m-d');
-        $sql = "SELECT * FROM Horarios WHERE fk_alumno = $id_alumno AND DATE(al_entrada) = '$date';";
-        $query = $this -> db -> query($sql);
+        $this -> db -> select('id_horario, al_entrada, al_salida');
+        $this -> db -> where('fk_alumno', $id_alumno);
+        $this -> db -> where('DATE(al_entrada)', date('Y-m-d'));
+        $query = $this -> db -> get('Horarios');
         $result =  $query -> result_array();
 
         $this -> db -> close();
 
         return count($result);
+    }
+
+    /**
+     * Mostrar datos del registro de hoy.
+     * @param $id_alumno
+     * @return mixed
+     */
+    public function mostrarRegistroHoy($id_alumno){
+        $this -> load -> database();
+
+        $this -> db -> select('id_horario, al_entrada');
+        $this -> db -> where('fk_alumno', $id_alumno);
+        $this -> db -> where('DATE(al_entrada)', date('Y-m-d'));
+        $this -> db -> where('salida IS NULL', null);
+        $query = $this -> db -> get('Horarios');
+        $result =  $query -> result_array();
+
+        $this -> db -> close();
+
+        return $result;
+    }
+
+    /**
+     * Agregar al registro del dia hora de salida
+     * @param $id_alumno
+     * @param $data
+     * @return mixed
+     */
+    public function agregarSalidaRegistro($id_alumno, $data){
+        $this -> load -> database();
+
+        $this -> db -> where('fk_alumno', $id_alumno);
+        $this -> db -> where('DATE(al_entrada)', date('Y-m-d'));
+        $result = $this -> db -> update('Horarios', $data);
+
+        $this -> db -> close();
+
+        return $result;
     }
 }

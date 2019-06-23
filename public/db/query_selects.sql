@@ -43,4 +43,8 @@
 
 	SELECT * FROM Horarios WHERE fk_alumno = 1 AND DATE(al_entrada) = DATE(NOW()) AND salida IS NULL;
     
+    SELECT * FROM Horarios WHERE fk_alumno =  1 AND DATE(al_entrada) = DATE(NOW());
+    
+    
+    
     -- DESCRIBE mysql.time_zone_name;

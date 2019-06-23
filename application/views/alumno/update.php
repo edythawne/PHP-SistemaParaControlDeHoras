@@ -1,6 +1,7 @@
 <?php
-    $this -> load -> view('html/header', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
-    $this -> load -> view('alumno/navbar');
+    $this -> load -> view('html/header', array('toolbar' => 'Actualizar Registro'));
+    $this -> load -> view('alumno/nav_slide');
+    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
 ?>
 
 <!-- Main -->
@@ -18,7 +19,7 @@
                         <div class="row" style="padding: 10px;">
 
                             <?php
-                                echo form_open('alumno/AlumnoController/saveRegister');
+                                echo form_open('alumno/AlumnoController/updateRegister');
                             ?>
 
                             <div class="input-field col s12 m6 l6">
@@ -33,26 +34,32 @@
                                 <?php echo form_error('first_name', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
-                            <!-- <div class="input-field col s12 m6 l4">
-                                <input placeholder="766 ..." id="user" name="user" type="text" class="validate" disabled value="<?php //echo date('Y-m-d H:i:s'); ?>">
-                                <label for="user">Tiempo de Registro</label>
-                                 <?php //echo form_error('apellidos', '<span class="helper-text">', '</span>'); ?>
-                            </div> -->
+                            <div class="input-field col s12 m6 l6">
+                                <input placeholder="766 ..." id="f_ent" name="f_ent" type="text" class="validate" disabled value="<?php echo date('Y-m-d', strtotime($registroHoy[0]['al_entrada'])); ?>">
+                                <label for="f_ent">Fecha de Entrada</label>
+                                 <?php echo form_error('f_ent', '<span class="helper-text">', '</span>'); ?>
+                            </div>
 
                             <div class="input-field col s12 m6 l6">
-                                <input placeholder="766 ..." id="date" name="date" type="text" class="datepicker validate" >
-                                <label for="date">Fecha de Entrada</label>
+                                <input placeholder="766 ..." id="h_ent" name="h_ent" type="text" class="validate" disabled value="<?php echo date('H:m:s', strtotime($registroHoy[0]['al_entrada'])); ?>">
+                                <label for="h_ent">Hora de Entrada</label>
+                                <?php echo form_error('h_ent', '<span class="helper-text">', '</span>'); ?>
+                            </div>
+
+                            <div class="input-field col s12 m6 l6">
+                                <input placeholder="766 ..." id="date" name="date" type="text"  disabled class="datepicker validate" value="<?php echo date('Y-m-d'); ?>">
+                                <label for="date">Fecha de Salida</label>
                                 <?php echo form_error('date', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <div class="input-field col s12 m6 l6">
                                 <input placeholder="766 ..." id="time" name="time" type="text" class="timepicker validate" value="<?php echo date('h:i A'); ?>">
-                                <label for="time">Hora de Entrada</label>
+                                <label for="time">Hora de Salida</label>
                                 <?php echo form_error('time', '<span class="helper-text">', '</span>'); ?>
                             </div>
 
                             <div class="right">
-                                <button class="waves-effect waves-light btn" name="submit" type="submit"><i class="material-icons right">save</i>Guardar</button>
+                                <button class="waves-effect waves-light btn" name="submit" type="submit"><i class="material-icons right">save</i>Actualizar</button>
                             </div>
 
                             <?php
@@ -94,7 +101,6 @@
         var instance_timepicker = M.Timepicker.init(timepicker, options_timepicker);
 
     });
-
 </script>
 
 <?php

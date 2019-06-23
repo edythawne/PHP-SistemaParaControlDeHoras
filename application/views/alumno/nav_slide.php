@@ -9,7 +9,7 @@
             <a href="#email"><span class="white-text email"><?php echo $_SESSION['apellidos'];  ?></span></a>
         </div>
     </li>
-    <li>
+    <!--<li>
         <a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a>
     </li>
     <li>
@@ -17,7 +17,7 @@
     </li>
     <li>
         <div class="divider"></div>
-    </li>
+    </li> -->
     <li>
         <a class="subheader">Ajustes</a>
     </li>
