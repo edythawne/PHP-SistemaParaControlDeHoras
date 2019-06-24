@@ -1,8 +1,6 @@
    -- Insertar administrador
     INSERT INTO Administradores(nombre, apellidos, usuario, contrasena) VALUES ('Edy', 'Thawne', 'edythawne', 'qwertyui');
 
-    -- Insertar Alumnos
-    
     -- Registro de prueba
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, usuario, contrasena) VALUES
 		(1, 'Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');

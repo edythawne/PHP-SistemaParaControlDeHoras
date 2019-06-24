@@ -1,7 +1,7 @@
 <?php
-    $this -> load -> view('html/header', array('toolbar' => 'Actualizar Registro'));
-    $this -> load -> view('alumno/nav_slide');
-    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('v1/init/header', array('toolbar' => 'Actualizar Registro'));
+    $this -> load -> view('v1/alumno/nav_slide');
+    $this -> load -> view('v1/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
 ?>
 
 <!-- Main -->
@@ -104,7 +104,7 @@
 </script>
 
 <?php
-    $this -> load -> view('html/footer');
+    $this -> load -> view('v1/init/footer');
 ?>
 
 

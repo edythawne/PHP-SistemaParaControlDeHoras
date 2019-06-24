@@ -53,12 +53,13 @@ class User_model extends CI_Model {
      * @param $id_alumno
      * @return mixed
      */
-    public function mostrarRegistroHorasCumplidas($id_alumno){
+    public function mostrarPrimerosRegistros($id_alumno){
         $this -> load -> database();
 
         $this -> db -> select("fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida");
         $this -> db -> where("fk_alumno", $id_alumno);
         $this -> db -> order_by("fecha_entrada", "DESC");
+        $this -> db -> limit(10);
         $query = $this -> db -> get('Horarios');
         $result =  $query -> result_array();
 
@@ -136,5 +137,32 @@ class User_model extends CI_Model {
         $this -> db -> close();
 
         return $result;
+    }
+
+    /**
+     * Contar los registros por alumno
+     * @param $id_alumno
+     * @return mixed
+     */
+    public function contarTodoRegistroAlumno($id_alumno){
+        $this -> load -> database();
+
+        $this -> db -> select('COUNT(entrada) AS registros', null);
+        $this -> db -> where ('fk_alumno', $id_alumno);
+        $query = $this -> db -> get('Horarios');
+        $result = $query -> result_array();
+
+        $this -> db -> close();
+
+        return $result[0]['registros'];
+    }
+
+    public function mostrarRegistrosPaginacion($id_alumno, $start){
+        $this -> load -> database();
+
+        $this -> db -> where ('fk_alumno', $id_alumno);
+
+
+        $this -> db -> close();
     }
 }

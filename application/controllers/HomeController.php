@@ -25,7 +25,7 @@ class HomeController extends CI_Controller {
             redirect('alumno');
         }
 
-        $this -> load -> view('home');
+        $this -> load -> view('v1/home');
     }
 
     /**

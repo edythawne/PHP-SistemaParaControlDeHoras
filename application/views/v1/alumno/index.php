@@ -1,8 +1,8 @@
 <?php
-    $this -> load -> view('html/header', array('toolbar' => 'Registros'));
-    $this -> load -> view('alumno/nav_slide');
-    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Registros', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
-    $this -> load -> view('html/notifier');
+    $this -> load -> view('v1/init/header', array('toolbar' => 'Registros'));
+    $this -> load -> view('v1/alumno/nav_slide');
+    $this -> load -> view('v1/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Registros', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('v1/init/notifier');
 ?>
 
 <main style="margin: 20px;">
@@ -107,6 +107,6 @@
 
 <!-- -->
 <?php
-    $this -> load -> view('html/footer');
+    $this -> load -> view('v1/init/footer');
 ?>
 

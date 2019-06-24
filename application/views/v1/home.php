@@ -1,7 +1,7 @@
 <?php
-    $this -> load -> view('html/header', array('toolbar' => 'Ford 32 - Horarios'));
-    $this -> load -> view('alumno/nav_slide');
-    $this -> load -> view('alumno/nav_bar', array('nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => '')));
+    $this -> load -> view('v1/init/header', array('toolbar' => 'Ford 32 - Horarios'));
+    $this -> load -> view('v1/alumno/nav_slide');
+    $this -> load -> view('v1/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Ford 32 - Horarios', 'nav_action' => 'nothing', 'nav_icon' => 'menu', 'nav_href' => '')));
 ?>
 
 <!-- Main -->
@@ -22,7 +22,6 @@
                             <?php
                                 echo form_open('HomeController/login');
                             ?>
-
 
                                 <div class="input-field col s12">
                                     <input placeholder="766 ..." id="user" name="user" type="text" class="validate" value="<?php echo set_value('user'); ?>">
@@ -56,5 +55,5 @@
 
 <!-- -->
 <?php
-    $this -> load -> view('html/footer');
+    $this -> load -> view('v1/init/footer');
 ?>

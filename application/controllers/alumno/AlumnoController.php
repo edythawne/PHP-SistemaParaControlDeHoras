@@ -27,14 +27,16 @@ class AlumnoController extends CI_Controller {
 
         // Consultas
         $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
-        $consult_2 = $this -> user_model -> mostrarRegistroHorasCumplidas($this -> session -> userdata('id_alumno'));
+        $consult_2 = $this -> user_model -> mostrarPrimerosRegistros($this -> session -> userdata('id_alumno'));
         $consult_3 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno'));
         $consult_4 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno')));
+
+        //$this -> user_model -> contarTodoRegistroAlumno($this -> session -> userdata('id_alumno'))
 
         $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
             'registroHorasCumplidas' => $consult_2, 'checarRegistroHoy' => $consult_3, 'checarRegistroHoyCompleto' => $consult_4);
 
-        $this -> load -> view('alumno/index', $dataStudent);
+        $this -> load -> view('v1/alumno/index', $dataStudent);
     }
 
     /**
@@ -44,7 +46,7 @@ class AlumnoController extends CI_Controller {
         $this -> validateSession();
 
         if ($this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno')) == 0){
-            $this -> load -> view('alumno/create');
+            $this -> load -> view('v1/alumno/create');
         } else {
             $this->index();
         }
@@ -67,7 +69,7 @@ class AlumnoController extends CI_Controller {
             // Guardar hora de entrada en session
             $this -> session -> set_userdata('in_time', date('H:i:s', strtotime($consulta_1[0]['al_entrada'])));
 
-            $this -> load -> view('alumno/update', $dataStudent);
+            $this -> load -> view('v1/alumno/update', $dataStudent);
         } else {
             $this->index();
         }
@@ -81,6 +83,9 @@ class AlumnoController extends CI_Controller {
 
     }
 
+    /**
+     * Validar session
+     */
     public function validateSession(){
         if (!$this -> session -> userdata('nombre')){
             redirect('home');
