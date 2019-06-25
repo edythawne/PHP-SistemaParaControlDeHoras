@@ -21,10 +21,10 @@
         id_alumno BIGINT NOT NULL AUTO_INCREMENT, 
         nombre VARCHAR(100) NOT NULL,
         apellidos VARCHAR(100) NOT NULL,
-        telefono VARCHAR(15) NULL,
+        telefono VARCHAR(100) NULL,
         estado VARCHAR(15) DEFAULT 'Activo',
         usuario VARCHAR(100) NOT NULL,
-        contrasena VARCHAR(200) NOT NULL,
+        contrasena VARCHAR(100) NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         update_at DATETIME ON UPDATE CURRENT_TIMESTAMP,
         PRIMARY KEY(id_alumno))

@@ -40,8 +40,8 @@ class HomeController extends CI_Controller {
             $this -> index();
         } else {
             $this -> load -> model('user_model');
-            $user = $this -> input -> post('user');
-            $pass = $this -> input -> post('password');
+            $user = sha1($this -> input -> post('user'));
+            $pass = sha1($this -> input -> post('password'));
             $object = $this -> user_model -> buscarAlumno($user, $pass);
 
             if (sizeof($object) > 0){

@@ -3,7 +3,7 @@
 
     -- Registro de prueba
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, usuario, contrasena) VALUES
-		(1, 'Valentina', 'Perez Miranda', '123456789', '123456789', '123456789');
+		(1, 'Valentina', 'Perez Miranda', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441');
         
 	-- Registro de Pruebas
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
@@ -13,11 +13,11 @@
 
     -- INSERT FOR ALUMNOS
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, usuario, contrasena) VALUES
-		(2, 'Melanie', 'García', '7661127462', '7661127462', '7661127462'),
-		(3, 'María Fernanda', 'Pérez Hernández', '7661020517', '7661020517', '7661020517'),
-		(4, 'Sarahí', 'García Florencia', '7661218805', '7661218805', '7661218805'),
-        (5, 'Juan Carlos', 'Cortez Pérez', '7661151621', '7661151621', '7661151621'), 
-        (6, 'Valentina', 'García Hernández', '5610005084', '5610005084', '5610005084');
+		(2, 'Melanie', 'García', 'd5507c772bd098b984d804b229de023c5b73acdd', 'd5507c772bd098b984d804b229de023c5b73acdd', 'd5507c772bd098b984d804b229de023c5b73acdd'),
+		(3, 'María Fernanda', 'Pérez Hernández', 'fc5b0b882682e9981692cd55dc61622136a81d19', 'fc5b0b882682e9981692cd55dc61622136a81d19', 'fc5b0b882682e9981692cd55dc61622136a81d19'),
+		(4, 'Sarahí', 'García Florencia', '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf', '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf', '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf'),
+        (5, 'Juan Carlos', 'Cortez Pérez', '9793ac2f7291b701cdf9e49579d476149261e68d', '9793ac2f7291b701cdf9e49579d476149261e68d', '9793ac2f7291b701cdf9e49579d476149261e68d'), 
+        (6, 'Valentina', 'García Hernández', '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5', '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5', '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5');
 
     -- Insertar Horarios
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
