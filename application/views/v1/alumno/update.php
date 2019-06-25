@@ -19,7 +19,7 @@
                         <div class="row" style="padding: 10px;">
 
                             <?php
-                                echo form_open('alumno/AlumnoController/updateRegister');
+                                echo form_open('v1/alumno/AlumnoController/updateRegister');
                             ?>
 
                             <div class="input-field col s12 m6 l6">

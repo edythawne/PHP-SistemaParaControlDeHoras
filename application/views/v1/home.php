@@ -20,7 +20,7 @@
                         <div class="row" style="padding-top: 10px;">
 
                             <?php
-                                echo form_open('HomeController/login');
+                                echo form_open('v1/HomeController/login');
                             ?>
 
                                 <div class="input-field col s12">
