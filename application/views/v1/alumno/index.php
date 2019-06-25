@@ -76,7 +76,7 @@
     ?>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/alumno/create_day') ?>">
+        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/v1/alumno/create_day') ?>">
             <i class="material-icons">add</i>
         </a>
     </div>
@@ -92,7 +92,7 @@
     ?>
 
     <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/alumno/update_day') ?>">
+        <a class="btn-floating btn-large red waves-effect waves-light btn modal-trigger" href="<?php echo base_url('index.php/v1/alumno/update_day') ?>">
             <i class="material-icons">update</i>
         </a>
     </div>

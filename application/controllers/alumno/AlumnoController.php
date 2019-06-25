@@ -88,7 +88,7 @@ class AlumnoController extends CI_Controller {
      */
     public function validateSession(){
         if (!$this -> session -> userdata('nombre')){
-            redirect('home');
+            redirect('v1/home');
         }
     }
 
@@ -100,7 +100,7 @@ class AlumnoController extends CI_Controller {
         $this -> session -> sess_destroy();
 
         if ($this -> session -> userdata('access') === 'false'){
-            redirect('home');
+            redirect('v1/home');
         }
     }
 
@@ -121,7 +121,7 @@ class AlumnoController extends CI_Controller {
 
             if ($this -> user_model -> agregarRegistro($data) == 1){
                 $this->session->set_userdata('message', '¡Hora de entrada registrada!');
-                redirect('alumno');
+                redirect('v1/alumno');
             } else {
                 $this->session->set_userdata('message', '¡Error al registrar hora de entrada!');
             }
@@ -144,7 +144,7 @@ class AlumnoController extends CI_Controller {
 
             if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
                 $this->session->set_userdata('message', '¡Hora de salida registrada!');
-                redirect('alumno');
+                redirect('v1/alumno');
             } else {
                 $this->session->set_userdata('message', '¡Error al registrar hora de salida!');
             }

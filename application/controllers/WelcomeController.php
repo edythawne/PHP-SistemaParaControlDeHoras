@@ -20,6 +20,6 @@ class WelcomeController extends CI_Controller {
 	 */
 	public function index() {
 		$this -> load -> helper('url');
-		redirect('home');
+		redirect('v1/home');
 	}
 }

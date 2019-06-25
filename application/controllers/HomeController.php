@@ -22,7 +22,7 @@ class HomeController extends CI_Controller {
      */
     public function index(){
         if ($this -> session -> userdata('nombre')){
-            redirect('alumno');
+            redirect('v1/alumno');
         }
 
         $this -> load -> view('v1/home');
@@ -52,7 +52,7 @@ class HomeController extends CI_Controller {
                     'access' => 'true'
                 );
                 $this -> session -> set_userdata($session_data);
-                redirect('alumno');
+                redirect('v1/alumno');
             } else {
                 $this->index();
             }
