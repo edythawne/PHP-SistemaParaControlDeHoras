@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Title -->
-    <title>Hello, world!</title>
+    <title><?php echo $toolbar ?></title>
 
     <!-- Material Design for Bootstrap fonts and icons -->
     <link rel="stylesheet" href="<?php echo css_url('material-icons.css');?>">
 
     <!-- Material Design for Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo css_url('bootstrap-material-design.css'); ?>">
+    <link rel="stylesheet" href="<?php echo css_url('navbar-top-fixed.css'); ?>">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
