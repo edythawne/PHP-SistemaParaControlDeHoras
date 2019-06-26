@@ -14,7 +14,7 @@ class HomeController extends CI_Controller {
         $this -> load -> helper('url');
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
-        $this -> load -> helper('bootstrap_helper');
+        $this -> load -> helper('metro_helper');
     }
 
     /**

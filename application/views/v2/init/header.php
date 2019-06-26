@@ -12,18 +12,11 @@
     <link rel="stylesheet" href="<?php echo css_url('material-icons.css');?>">
 
     <!-- Material Design for Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo css_url('bootstrap-material-design.css'); ?>">
-    <link rel="stylesheet" href="<?php echo css_url('navbar-top-fixed.css'); ?>">
+    <link rel="stylesheet" href="<?php echo css_url('metro-all.css'); ?>">
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="<?php echo js_url('jquery-3.2.1.slim.min.js')?>"></script>
-    <script src="<?php echo js_url('popper.js')?>"></script>
-    <script src="<?php echo js_url('bootstrap-material-design.js')?>"></script>
-    <script>
-        $(document).ready(function() {
-            $('body').bootstrapMaterialDesign();
-        });
-    </script>
+    <script src="<?php echo js_url('jquery-3.3.1.js')?>"></script>
+    <script src="<?php echo js_url('metro.js')?>"></script>
+
 </head>
-<body>
