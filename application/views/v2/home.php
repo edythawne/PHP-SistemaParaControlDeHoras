@@ -1,54 +1,79 @@
 <?php
-    $this->load->view('v2/init/header', array('toolbar' => 'Ford 32 - Horarios'));
+    $this -> load -> view('v2/init/header', array('toolbar' => 'Ford 32 - Horarios'));
 ?>
 
 <style>
-    /**html,
-    body {
-        height: 100%;
+    .login-form {
+        width: 100%;
+        height: auto;
+        top: 50%;
+        margin-top: -160px;
     }
 
-    body {
-        display: -ms-flexbox;
-        display: -webkit-box;
-        display: flex;
-        -ms-flex-align: center;
-        -ms-flex-pack: center;
-        -webkit-box-align: center;
-        align-items: center;
-        -webkit-box-pack: center;
-        justify-content: center;
-        padding: 30px 50px;
-    } **/
+    @media (min-width: 576px) {
+        .login-form {
+            max-width: 440px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .login-form {
+            max-width: 620px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .login-form {
+            max-width: 860px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .login-form {
+            max-width: 860px;
+        }
+    }
+
+    @media (min-width: 1452px) {
+        .login-form {
+            max-width: 860px;
+        }
+    }
 </style>
 
-<body>
-    <header>
-        <div data-role="appbar" data-expand-point="md">
-            <a href="#" class="brand no-hover">
-        <span style="width: 55px;" class="p-2 border bd-dark border-radius">
-            m<sup>4</sup>
-        </span>
-            </a>
+<body class="container">
 
-            <ul class="app-bar-menu">
-                <li><a href="#">Home</a></li>
-                <li>
-                    <a href="#" class="dropdown-toggle">Products</a>
-                    <ul class="d-menu" data-role="dropdown">
-                        <li><a href="#">Windows 10</a></li>
-                        <li><a href="#">Office 365</a></li>
-                        <li class="divider bg-lightGray"></li>
-                        <li><a href="#">Skype</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Blog</a></li>
-                <li><a href="#">Contacts</a></li>
-            </ul>
+    <main class="h-vh-100">
+
+        <div class="login-form bg-white p-6 mx-auto border bd-default z-depth-1">
+            <?php  echo form_open('HomeController/login'); ?>
+                <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
+                <h2 class="text-light">Autenticación</h2>
+
+                <div class="row">
+                    <div class="cell-sm-12 cell-md-6 cell-lg-6">
+                        <label>Usuario</label>
+                        <input type="text" id="user" name="user" value="<?php echo set_value('user'); ?>"/>
+                        <?php echo form_error('user', '<small class="text-muted">', '</small>'); ?>
+                    </div>
+                    <div class="cell-sm-12 cell-md-6 cell-lg-6">
+                        <label>Contraseña</label>
+                        <input type="password"id="password" name="password" value="<?php echo set_value('password'); ?>"/>
+                        <?php echo form_error('password', '<small class="text-muted">', '</small>'); ?>
+                    </div>
+                </div>
+
+
+                <div class="form-group mt-10">
+                        <a href="" class="place-right">Acceso a Administradores</a>
+                    <button class="button" name="submit" type="submit">Iniciar Sesión</button>
+                </div>
+            <?php echo "</form>"; ?>
         </div>
-    </header>
-</body>
 
+    </main>
+
+</body>
 
 <?php
     $this->load->view('v2/init/footer');

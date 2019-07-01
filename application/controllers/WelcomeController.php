@@ -20,6 +20,7 @@ class WelcomeController extends CI_Controller {
 	 */
 	public function index() {
 		$this -> load -> helper('url');
-		redirect('v2/home');
+		$version = $this -> config -> item('versionName');
+		redirect("$version/home");
 	}
 }

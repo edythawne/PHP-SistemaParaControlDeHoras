@@ -4,17 +4,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class HomeController extends CI_Controller {
 
+    // Version Name
+    private $versionName = 'v1';
+
     /**
      * HomeController constructor.
      */
     public function __construct(){
         parent::__construct();
 
+        // Cargar Version
+        $this -> versionName = $this -> config -> item('versionName');
+
         // Cargar librerías
         $this -> load -> helper('url');
         $this -> load -> helper('form');
         $this -> load -> library('form_validation');
-        $this -> load -> helper('metro_helper');
+
+        if ($this -> versionName == 'v1'){
+            $this -> load -> helper('materializecss_helper');
+        } else {
+            $this -> load -> helper('metro_helper');
+        }
     }
 
     /**
@@ -22,10 +33,10 @@ class HomeController extends CI_Controller {
      */
     public function index(){
         if ($this -> session -> userdata('nombre')){
-            //redirect('v1/alumno');
+            redirect($this->versionName.'/alumno');
         }
 
-        $this -> load -> view('v2/home');
+        $this -> load -> view($this->versionName.'/home');
     }
 
     /**
@@ -33,10 +44,10 @@ class HomeController extends CI_Controller {
      */
     public function login(){
         // Validar campos del formulario
-        /**$this -> form_validation -> set_rules('user', 'User', 'required');
+        $this -> form_validation -> set_rules('user', 'User', 'required');
         $this -> form_validation -> set_rules('password', 'Password', 'required');
 
-        if ($this -> form_validation -> run() === FALSE){
+        if ($this -> form_validation -> run() == FALSE){
             $this -> index();
         } else {
             $this -> load -> model('user_model');
@@ -52,11 +63,11 @@ class HomeController extends CI_Controller {
                     'access' => 'true'
                 );
                 $this -> session -> set_userdata($session_data);
-                redirect('v1/alumno');
+                redirect($this->versionName.'/alumno');
             } else {
                 $this->index();
             }
-        } **/
+        }
     }
 
 

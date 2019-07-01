@@ -4,16 +4,26 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class AlumnoController extends CI_Controller {
 
+    private $versionName = 'v1';
+
     /**
      * AlumnoController constructor.
      */
     public function __construct(){
         parent::__construct();
 
+        // Cargar Version
+        $this -> versionName = $this -> config -> item('versionName');
+
         // Cargar librerias
         $this -> load -> helper('url');
         $this -> load -> library('form_validation');
-        $this -> load -> helper('materializecss_helper');
+
+        if ($this -> versionName == 'v1'){
+            $this -> load -> helper('materializecss_helper');
+        } else {
+            $this -> load -> helper('metro_helper');
+        }
 
         // Model
         $this -> load -> model('user_model');
@@ -36,7 +46,7 @@ class AlumnoController extends CI_Controller {
         $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
             'registroHorasCumplidas' => $consult_2, 'checarRegistroHoy' => $consult_3, 'checarRegistroHoyCompleto' => $consult_4);
 
-        $this -> load -> view('v1/alumno/index', $dataStudent);
+        $this -> load -> view($this->versionName.'/alumno/index', $dataStudent);
     }
 
     /**

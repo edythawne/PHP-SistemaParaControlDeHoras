@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * Get version name of project
+ */
+$versionName = $this -> config -> item('versionName');
+
 /*
 | -------------------------------------------------------------------------
 | URI ROUTING
@@ -49,16 +54,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['v2/home'] = 'v2/HomeController';
 // --------------------------
-// --------------------------
-$route['v1/alumno/update_day'] = 'v1/alumno/AlumnoController/update';
-$route['v1/alumno/create_day'] = 'v1/alumno/AlumnoController/store';
-$route['v1/alumno/close_session'] = 'v1/alumno/AlumnoController/closeSession';
-$route['v1/alumno'] = 'v1/alumno/AlumnoController/index';
+$route[$versionName.'/alumno/update_day'] = 'alumno/AlumnoController/update';
+$route[$versionName.'/alumno/create_day'] = 'alumno/AlumnoController/store';
+$route[$versionName.'/alumno/close_session'] = 'alumno/AlumnoController/closeSession';
+$route[$versionName.'/alumno'] = 'alumno/AlumnoController/index';
 // -----
-$route['v1/home'] = 'v1/HomeController';
+$route[$versionName.'/home'] = 'HomeController';
 // ---------
 $route['default_controller'] = 'WelcomeController';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+

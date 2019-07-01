@@ -6,7 +6,7 @@
             </div>
             <a href="#user"><img class="circle" src="<?php echo img_url('profile.png'); ?>"></a>
             <a href="#name"><span class="white-text name"><?php echo $_SESSION['nombre']; ?></span></a>
-            <a href="#email"><span class="white-text email"><?php echo $_SESSION['apellidos'];  ?></span></a>
+            <a href="#email"><span class="white-text email"><?php echo $_SESSION['apellidos'];?></span></a>
         </div>
     </li>
     <!--<li>
