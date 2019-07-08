@@ -195,7 +195,7 @@ class AlumnoController extends CI_Controller {
                 return true;
             }
         } else {
-            if (date('H:i:s', strtotime($string)) > date('H:i:s', strtotime('14:25:00'))){
+            if (date('H:i:s', strtotime($string)) > date('H:i:s', strtotime('13:00:00'))){
                 return true;
             } else {
                 $this -> form_validation -> set_message('check_time_format', 'Ingrese una hora mayor a las 14:30');
