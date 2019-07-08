@@ -22,6 +22,6 @@
         <a class="subheader">Ajustes</a>
     </li>
     <li>
-        <a href="<?php echo base_url('index.php/v1/alumno/close_session')  ?>"><i class="material-icons">close</i>Cerrar Session</a>
+        <a href="<?php echo base_url('index.php/v1/alumno/close_session'); ?>"><i class="material-icons">close</i>Cerrar Session</a>
     </li>
 </ul>

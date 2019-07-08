@@ -59,7 +59,7 @@ class User_model extends CI_Model {
         $this -> db -> select("fk_alumno, DATE(al_entrada) AS fecha_entrada, DATE(al_salida) AS fecha_salida, DATE_FORMAT(al_entrada, '%T') AS hora_entrada, DATE_FORMAT(al_salida, '%T') AS hora_salida");
         $this -> db -> where("fk_alumno", $id_alumno);
         $this -> db -> order_by("fecha_entrada", "DESC");
-        $this -> db -> limit(10);
+        //$this -> db -> limit(10);
         $query = $this -> db -> get('Horarios');
         $result =  $query -> result_array();
 

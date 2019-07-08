@@ -56,7 +56,7 @@ class AlumnoController extends CI_Controller {
         $this -> validateSession();
 
         if ($this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno')) == 0){
-            $this -> load -> view('v1/alumno/create');
+            $this -> load -> view($this->versionName.'/alumno/create');
         } else {
             $this->index();
         }
@@ -79,7 +79,7 @@ class AlumnoController extends CI_Controller {
             // Guardar hora de entrada en session
             $this -> session -> set_userdata('in_time', date('H:i:s', strtotime($consulta_1[0]['al_entrada'])));
 
-            $this -> load -> view('v1/alumno/update', $dataStudent);
+            $this -> load -> view($this->versionName.'/alumno/update', $dataStudent);
         } else {
             $this->index();
         }
@@ -98,7 +98,7 @@ class AlumnoController extends CI_Controller {
      */
     public function validateSession(){
         if (!$this -> session -> userdata('nombre')){
-            redirect('v1/home');
+            redirect($this->versionName.'/home');
         }
     }
 
@@ -110,7 +110,7 @@ class AlumnoController extends CI_Controller {
         $this -> session -> sess_destroy();
 
         if ($this -> session -> userdata('access') === 'false'){
-            redirect('v1/home');
+            redirect($this->versionName.'/home');
         }
     }
 
@@ -129,9 +129,12 @@ class AlumnoController extends CI_Controller {
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('fk_alumno' => $this -> session -> userdata('id_alumno'), 'al_entrada' => $format_date.' '.$format_time);
 
+
+            print_r($data);
+
             if ($this -> user_model -> agregarRegistro($data) == 1){
                 $this->session->set_userdata('message', '¡Hora de entrada registrada!');
-                redirect('v1/alumno');
+                redirect($this->versionName.'/alumno');
             } else {
                 $this->session->set_userdata('message', '¡Error al registrar hora de entrada!');
             }
@@ -152,12 +155,12 @@ class AlumnoController extends CI_Controller {
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('al_salida' => $format_date.' '.$format_time);
 
-            if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
+            /**if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
                 $this->session->set_userdata('message', '¡Hora de salida registrada!');
                 redirect('v1/alumno');
             } else {
                 $this->session->set_userdata('message', '¡Error al registrar hora de salida!');
-            }
+            }**/
         }
     }
 
@@ -184,11 +187,20 @@ class AlumnoController extends CI_Controller {
      * @return bool
      */
     public function check_time_format($string){
-        if (strpos($string, 'AM')){
-            $this -> form_validation -> set_message('check_time_format', 'Ingrese PM en vez de AM a la hora');
-            return false;
+        if (strpos($string, 'AM') || strpos($string, 'PM')){
+            if (strpos($string, 'AM')){
+                $this -> form_validation -> set_message('check_time_format', 'Ingrese PM en vez de AM a la hora');
+                return false;
+            } else {
+                return true;
+            }
         } else {
-            return true;
+            if (date('H:i:s', strtotime($string)) > date('H:i:s', strtotime('14:25:00'))){
+                return true;
+            } else {
+                $this -> form_validation -> set_message('check_time_format', 'Ingrese una hora mayor a las 14:30');
+                return false;
+            }
         }
     }
 

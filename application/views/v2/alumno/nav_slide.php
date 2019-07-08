@@ -1,4 +1,8 @@
-<aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb">
+<?php
+    $versionName = $this -> config -> item('versionName');
+?>
+
+<aside class="sidebar z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb">
     <div style="padding-bottom: 52px;">
 
     </div>
@@ -11,10 +15,27 @@
         <span class="subtitle fg-white"><?php echo $_SESSION['apellidos'];?></span>
     </div>
     <ul class="sidebar-menu">
-        <li><a><span class="mif-home icon"></span>Home</a></li>
-        <li><a><span class="mif-books icon"></span>Guide</a></li>
-        <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+        <!--  --------------------------------------------------------------------------------- -->
+        <?php  if ($uri != 'index'): ?>
+            <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
+        <?php  endif; ?>
+        <!--  --------------------------------------------------------------------------------- -->
+
+        <!--  --------------------------------------------------------------------------------- -->
+        <?php  if ($uri != 'create_day'): ?>
+            <!-- -->
+            <?php if ($checarRegistroHoy == 0): ?>
+                <li><a href="<?php echo base_url('index.php/'.$versionName.'/alumno/create_day') ?>"><span class="mif-plus icon"></span>Agregar Registro</a></li>
+            <?php elseif($checarRegistroHoyCompleto == 0): ?>
+                <!-- Nothing! -->
+            <?php else: ?>
+                <li><a href="<?php echo base_url('index.php/'.$versionName.'/alumno/update_day') ?>"><span class="mif-redo icon"></span>Actualizar Registro</a></li>
+            <?php endif; ?>
+            <!-- --->
+        <?php endif; ?>
+        <!--  --------------------------------------------------------------------------------- -->
+
         <li class="divider"></li>
-        <li><a><span class="mif-images icon"></span>Icons</a></li>
+        <li><a href="<?php echo base_url('index.php/'.$versionName.'/alumno/close_session'); ?>"><span class="mif-cross icon"></span>Cerrar Sesión</a></li>
     </ul>
 </aside>

@@ -1,4 +1,5 @@
 <?php
+
     $this -> load -> view('v1/init/header', array('toolbar' => 'Actualizar Registro'));
     $this -> load -> view('v1/alumno/nav_slide');
     $this -> load -> view('v1/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
@@ -19,7 +20,7 @@
                         <div class="row" style="padding: 10px;">
 
                             <?php
-                                echo form_open('v1/alumno/AlumnoController/updateRegister');
+                                echo form_open('alumno/AlumnoController/updateRegister');
                             ?>
 
                             <div class="input-field col s12 m6 l6">
