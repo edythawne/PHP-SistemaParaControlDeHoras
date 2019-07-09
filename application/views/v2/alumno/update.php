@@ -1,9 +1,6 @@
 <?php
     $this -> load -> view('v2/init/header', array('toolbar' => 'Registros'));
-
-
-    print_r($registroHoy);
-
+    
     // Datos
     $nombre = $_SESSION['nombre'];
     $apellidos = $_SESSION['apellidos'];
@@ -12,6 +9,7 @@
 
     $f_ent = date('Y-m-d', strtotime($registroHoy[0]['al_entrada']));
     $h_ent = date('H:m:s', strtotime($registroHoy[0]['al_entrada']));
+
 ?>
 
     <style>
@@ -54,10 +52,11 @@
     <?php
         $this -> load -> view('v2/alumno/nav_slide', array('uri' => 'update_day'));
         $this -> load -> view('v2/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Actualizar Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+
     ?>
 
     <main class="">
-        <div class="h-100 p-4">
+        <div class="p-4">
             <div class="p-2">
                 <div class="row">
 

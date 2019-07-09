@@ -8,6 +8,7 @@
     <?php
         $this -> load -> view('v2/alumno/nav_slide',  array('uri' => 'index'));
         $this -> load -> view('v2/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Registros', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+        $this -> load -> view('v2/init/notifier');
     ?>
 
     <main class="">
@@ -88,7 +89,7 @@
                                                     <td><?php echo $rhc['fecha_entrada']; ?></td>
                                                     <td><?php echo $rhc['hora_entrada']; ?></td>
                                                     <td><?php echo $rhc['hora_salida']; ?></td>
-                                                    <td> ng </td>
+                                                    <td> -- </td>
                                                 </tr>
                                             <?php endforeach; ?>
                                             </tbody>

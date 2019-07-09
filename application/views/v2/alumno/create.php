@@ -6,8 +6,6 @@
     $apellidos = $_SESSION['apellidos'];
     $now = date('Y-m-d');
     $time = date('H:i:s');
-
-    print_r($time);
 ?>
 
     <style>

@@ -15,24 +15,38 @@
         <span class="subtitle fg-white"><?php echo $_SESSION['apellidos'];?></span>
     </div>
     <ul class="sidebar-menu">
-        <!--  --------------------------------------------------------------------------------- -->
-        <?php  if ($uri != 'index'): ?>
-            <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
-        <?php  endif; ?>
-        <!--  --------------------------------------------------------------------------------- -->
 
         <!--  --------------------------------------------------------------------------------- -->
-        <?php  if ($uri != 'create_day'): ?>
-            <!-- -->
-            <?php if ($checarRegistroHoy == 0): ?>
+        <!-- Index Menu -->
+        <!--  --------------------------------------------------------------------------------- -->
+        <?php  if ($uri == 'index'): ?>
+            <?php if (@$checarRegistroHoy == 0): ?>
                 <li><a href="<?php echo base_url('index.php/'.$versionName.'/alumno/create_day') ?>"><span class="mif-plus icon"></span>Agregar Registro</a></li>
-            <?php elseif($checarRegistroHoyCompleto == 0): ?>
+            <?php elseif(@$checarRegistroHoyCompleto == 0): ?>
                 <!-- Nothing! -->
             <?php else: ?>
                 <li><a href="<?php echo base_url('index.php/'.$versionName.'/alumno/update_day') ?>"><span class="mif-redo icon"></span>Actualizar Registro</a></li>
             <?php endif; ?>
-            <!-- --->
         <?php endif; ?>
+        <!--  --------------------------------------------------------------------------------- -->
+        <!--  --------------------------------------------------------------------------------- -->
+
+        <!--  --------------------------------------------------------------------------------- -->
+        <!-- Agregar Registro Menu -->
+        <!--  --------------------------------------------------------------------------------- -->
+        <?php  if ($uri == 'create_day'): ?>
+            <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
+        <?php endif; ?>
+        <!--  --------------------------------------------------------------------------------- -->
+        <!--  --------------------------------------------------------------------------------- -->
+
+        <!--  --------------------------------------------------------------------------------- -->
+        <!-- Actualizar Registro Menu -->
+        <!--  --------------------------------------------------------------------------------- -->
+        <?php  if ($uri == 'update_day'): ?>
+            <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
+        <?php endif; ?>
+        <!--  --------------------------------------------------------------------------------- -->
         <!--  --------------------------------------------------------------------------------- -->
 
         <li class="divider"></li>

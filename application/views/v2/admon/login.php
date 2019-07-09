@@ -1,8 +1,5 @@
 <?php
-    $this -> load -> view('v2/init/header', array('toolbar' => 'Ford 32 - Horarios'));
-
-    // Version
-    $versionName = $this -> config -> item('versionName');
+    $this -> load -> view('v2/init/header', array('toolbar' => 'Administrador'));
 ?>
 
 <style>
@@ -51,7 +48,7 @@
         <div class="login-form bg-white p-6 mx-auto border bd-default z-depth-1">
             <?php  echo form_open('HomeController/login'); ?>
                 <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
-                <h2 class="text-light">Autenticación</h2>
+                <h4 class="text-light">Autenticación de Administrador</h4>
 
                 <div class="row">
                     <div class="cell-sm-12 cell-md-6 cell-lg-6">
@@ -68,7 +65,7 @@
 
 
                 <div class="form-group mt-10">
-                    <a href="<?php echo base_url('index.php/'.$versionName.'/admon/login')?>" class="place-right">Acceso a Administradores</a>
+                    <a href="<?php echo base_url('index.php')?>" class="place-right">Acceso a Usuarios</a>
                     <button class="button" name="submit" type="submit">Iniciar Sesión</button>
                 </div>
             <?php echo "</form>"; ?>

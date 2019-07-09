@@ -133,10 +133,10 @@ class AlumnoController extends CI_Controller {
             print_r($data);
 
             if ($this -> user_model -> agregarRegistro($data) == 1){
-                $this->session->set_userdata('message', '¡Hora de entrada registrada!');
+                $this -> session -> set_userdata('message', '¡Hora de entrada registrada!');
                 redirect($this->versionName.'/alumno');
             } else {
-                $this->session->set_userdata('message', '¡Error al registrar hora de entrada!');
+                $this -> session -> set_userdata('message', '¡Error al registrar hora de entrada!');
             }
         }
     }
@@ -155,12 +155,12 @@ class AlumnoController extends CI_Controller {
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('al_salida' => $format_date.' '.$format_time);
 
-            /**if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
-                $this->session->set_userdata('message', '¡Hora de salida registrada!');
-                redirect('v1/alumno');
+            if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
+                $this -> session -> set_userdata('message', '¡Hora de salida registrada!');
+                redirect($this->versionName.'/alumno');
             } else {
-                $this->session->set_userdata('message', '¡Error al registrar hora de salida!');
-            }**/
+                $this -> session -> set_userdata('message', '¡Error al registrar hora de salida!');
+            }
         }
     }
 

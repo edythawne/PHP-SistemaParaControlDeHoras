@@ -54,6 +54,8 @@ $versionName = $this -> config -> item('versionName');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
+// -- ----------------------
+$route[$versionName.'/admon/login'] = 'admon/LoginController';
 // --------------------------
 $route[$versionName.'/alumno/update_day'] = 'alumno/AlumnoController/update';
 $route[$versionName.'/alumno/create_day'] = 'alumno/AlumnoController/store';
