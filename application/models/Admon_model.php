@@ -22,7 +22,16 @@ class Admon_model extends CI_Model
      * @return mixed
      */
     public function buscarAdmon($user, $password){
+        $this -> load -> database();
 
+        $this -> db -> select($this -> database_constants :: usuario_datos_1);
+        $this -> db -> where($this -> database_constants :: usuario_usuario, $user);
+        $this -> db -> where($this -> database_constants :: usuario_contrasena, $password);
+        $query = $this -> db -> get($this -> database_constants :: tabla_admon);
+        $result =  $query -> result_array();
+        $this -> db -> close();
+
+        return $result;
     }
 
 }

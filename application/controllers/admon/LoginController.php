@@ -50,20 +50,22 @@ class LoginController extends CI_Controller {
         if ($this -> form_validation -> run() == FALSE){
             $this -> index();
         } else {
-            $this -> load -> model('user_model');
+            $this -> load -> model('admon_model');
             $user = sha1($this -> input -> post('user'));
             $pass = sha1($this -> input -> post('password'));
-            $object = $this -> user_model -> buscarAlumno($user, $pass);
+            $object = $this -> admon_model -> buscarAdmon($user, $pass);
 
             if (sizeof($object) > 0){
                 $session_data = array(
-                    'id_alumno' => $object[0]['id_alumno'],
+                    'id_admin' => $object[0]['id_admin'],
                     'nombre' => $object[0]['nombre'],
                     'apellidos' => $object[0]['apellidos'],
                     'access' => 'true'
                 );
-                $this -> session -> set_userdata($session_data);
-                redirect($this->versionName.'/alumno');
+                //$this -> session -> set_userdata($session_data);
+                //redirect($this->versionName.'/alumno');
+
+                print_r(json_encode($session_data));
             } else {
                 $this->index();
             }

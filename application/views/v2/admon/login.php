@@ -46,7 +46,7 @@
     <main class="h-vh-100">
 
         <div class="login-form bg-white p-6 mx-auto border bd-default z-depth-1">
-            <?php  echo form_open('HomeController/login'); ?>
+            <?php  echo form_open('admon/LoginController/login'); ?>
                 <span class="mif-vpn-lock mif-4x place-right" style="margin-top: -10px;"></span>
                 <h4 class="text-light">Autenticación de Administrador</h4>
 
