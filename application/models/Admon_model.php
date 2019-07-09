@@ -12,7 +12,7 @@ class Admon_model extends CI_Model
         parent::__construct();
 
         // Cargar Libreria
-        $this->load->library('database_constants');
+        $this -> load -> library('database_constants');
     }
 
     /**
