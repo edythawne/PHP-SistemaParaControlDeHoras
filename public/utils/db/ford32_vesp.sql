@@ -22,7 +22,7 @@
         nombre VARCHAR(100) NOT NULL,
         apellidos VARCHAR(100) NOT NULL,
         telefono VARCHAR(100) NULL,
-        estado VARCHAR(15) DEFAULT 'Activo',
+        estado VARCHAR(15) DEFAULT 'ACTIVO',
         usuario VARCHAR(100) NOT NULL,
         contrasena VARCHAR(100) NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -44,3 +44,23 @@
     
     -- ALTER TABLE
     ALTER TABLE Horarios ADD FOREIGN KEY (fk_alumno) REFERENCES Alumnos(id_alumno) ON UPDATE CASCADE ON DELETE NO ACTION;
+    
+    -- CREATE PROCEDURE 
+    DELIMITER //
+		CREATE PROCEDURE alumno_fechas_servicio (IN id INT)
+		BEGIN
+			SET @id_alumno = (SELECT id_alumno FROM Alumnos WHERE id_alumno = id);
+			SET @nombre = (SELECT nombre FROM Alumnos WHERE id_alumno = id);
+			SET @apellidos = (SELECT apellidos FROM Alumnos WHERE id_alumno = id);
+			SET @horas_cumplidas = (SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = id);
+			SET @fechas = (SELECT JSON_ARRAYAGG(JSON_OBJECT(
+					'fecha_asistencia', DATE(Horarios.al_salida), 
+                    'hora_entrada', DATE_FORMAT(Horarios.al_entrada, '%T'), 
+                    'hora_salida', DATE_FORMAT(Horarios.al_salida, '%T'),
+					'horas_acumuladas', TIMESTAMPDIFF(MINUTE, al_entrada, al_salida) DIV 60)
+				) AS fechas FROM Alumnos
+			INNER JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno AND Horarios.fk_alumno = id);
+			
+			SELECT @nombre AS nombre, @apellidos AS apellidos, @horas_cumplidas AS horas_cumplidas, @fechas AS fechas;
+		END//
+    DELIMITER ;

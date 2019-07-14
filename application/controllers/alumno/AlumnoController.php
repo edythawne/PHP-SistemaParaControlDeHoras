@@ -36,12 +36,12 @@ class AlumnoController extends CI_Controller {
         $this -> validateSession();
 
         // Consultas
-        $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id_alumno'));
-        $consult_2 = $this -> user_model -> mostrarPrimerosRegistros($this -> session -> userdata('id_alumno'));
-        $consult_3 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno'));
-        $consult_4 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno')));
+        $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id'));
+        $consult_2 = $this -> user_model -> mostrarPrimerosRegistros($this -> session -> userdata('id'));
+        $consult_3 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id'));
+        $consult_4 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id')));
 
-        //$this -> user_model -> contarTodoRegistroAlumno($this -> session -> userdata('id_alumno'))
+        //$this -> user_model -> contarTodoRegistroAlumno($this -> session -> userdata('id'))
 
         $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
             'registroHorasCumplidas' => $consult_2, 'checarRegistroHoy' => $consult_3, 'checarRegistroHoyCompleto' => $consult_4);
@@ -55,7 +55,7 @@ class AlumnoController extends CI_Controller {
     public function store(){
         $this -> validateSession();
 
-        if ($this -> user_model -> checarRegistroHoy($this -> session -> userdata('id_alumno')) == 0){
+        if ($this -> user_model -> checarRegistroHoy($this -> session -> userdata('id')) == 0){
             $this -> load -> view($this->versionName.'/alumno/create');
         } else {
             $this->index();
@@ -71,9 +71,9 @@ class AlumnoController extends CI_Controller {
         $this -> validateSession();
 
         // Validar si ya se actualizo registro
-        if (count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno'))) == 1){
+        if (count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id'))) == 1){
 
-            $consulta_1 = $this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id_alumno'));
+            $consulta_1 = $this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id'));
             $dataStudent =  array('registroHoy' => $consulta_1);
 
             // Guardar hora de entrada en session
@@ -99,6 +99,10 @@ class AlumnoController extends CI_Controller {
     public function validateSession(){
         if (!$this -> session -> userdata('nombre')){
             redirect($this->versionName.'/home');
+        }
+
+        if ($this -> session -> userdata('access') != 'user'){
+            redirect($this->versionName.'/admon/index');
         }
     }
 
@@ -127,7 +131,7 @@ class AlumnoController extends CI_Controller {
         } else {
             $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
-            $data = array('fk_alumno' => $this -> session -> userdata('id_alumno'), 'al_entrada' => $format_date.' '.$format_time);
+            $data = array('fk_alumno' => $this -> session -> userdata('id'), 'al_entrada' => $format_date.' '.$format_time);
 
 
             print_r($data);
@@ -155,7 +159,7 @@ class AlumnoController extends CI_Controller {
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('al_salida' => $format_date.' '.$format_time);
 
-            if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id_alumno'), $data) == 1){
+            if ($this -> user_model -> agregarSalidaRegistro($this -> session -> userdata('id'), $data) == 1){
                 $this -> session -> set_userdata('message', '¡Hora de salida registrada!');
                 redirect($this->versionName.'/alumno');
             } else {

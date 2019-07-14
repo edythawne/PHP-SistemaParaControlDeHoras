@@ -3,22 +3,25 @@
 
     // Datos
     $alumno = $_SESSION['nombre'].' '.$_SESSION['apellidos'];
+
 ?>
+
 <body>
     <?php
-        $this -> load -> view('v2/alumno/nav_slide',  array('uri' => 'index'));
-        $this -> load -> view('v2/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Registros')));
-        $this -> load -> view('v2/init/notifier');
+        $this -> load -> view('v2/admon/nav_slide',  array('uri' => 'info_student'));
+        $this -> load -> view('v2/admon/nav_bar', array('nav_params' => array('toolbar' => 'Admon')));
     ?>
 
-    <main class="">
+    <main>
         <div class="">
             <div class="p-2">
+
                 <div class="row">
+
                     <div class="cell-12">
                         <div class="card">
                             <div class="card-header">
-                                <b><?php echo $alumno; ?></b>
+                                <b><?php echo $nombreAlumno; ?></b>
                             </div>
                             <div class="card-content p-2">
                                 <div class="row">
@@ -66,30 +69,44 @@
                         </div>
                     </div>
 
+
                     <div class="cell-12">
-                        <div class="card p-2">
+                        <div class="card">
                             <div class="card-header">
-                                <b>Horas en Activo</b>
+                                <b>Asistencia</b>
                             </div>
-                            <div class="card-content">
+                            <div class="card-content p-2">
                                 <div class="row">
                                     <div class="cell-12">
-                                        <table class="table table-border cell-border row-hover row-border" >
+
+                                        <?php $array_fechas = json_decode($alumnosFechasServicio['fechas'], true); ?>
+                                        <?php krsort($array_fechas); ?>
+
+
+                                        <table class="table striped table-border cell-border row-hover row-border"
+                                                data-role="table"
+                                                data-cls-table-top="row flex-nowrap"
+                                                data-cls-search="cell-md-8"
+                                                data-cls-rows-count="cell-md-4"
+                                                data-rows="10"
+                                                data-rownum="true"
+                                                data-rows-steps="10, 15, 100"
+                                                data-show-activity="false">
                                             <thead>
                                             <tr>
-                                                <th class="text-center">Asistencia</th>
-                                                <th class="text-center">Hora de Entrada</th>
-                                                <th class="text-center">Hora de Salida</th>
-                                                <th class="text-center">Obs.</th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">Fecha Asistencia</th>
+                                                <th data-cls-column="text-center" class="text-center">Entrada</th>
+                                                <th data-cls-column="text-center" class="text-center">Salida</th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">T. Acumulado</th>
                                             </tr>
                                             </thead>
                                             <tbody class="text-center">
-                                            <?php foreach ($registroHorasCumplidas as $rhc): ?>
+                                            <?php foreach ($array_fechas as $af): ?>
                                                 <tr>
-                                                    <td><?php echo $rhc['fecha_entrada']; ?></td>
-                                                    <td><?php echo $rhc['hora_entrada']; ?></td>
-                                                    <td><?php echo $rhc['hora_salida']; ?></td>
-                                                    <td> -- </td>
+                                                    <td><?php echo $af['fecha_asistencia']; ?></td>
+                                                    <td><?php echo $af['hora_entrada']; ?></td>
+                                                    <td><?php echo $af['hora_salida']; ?></td>
+                                                    <td><?php echo $af['horas_acumuladas']; ?></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                             </tbody>
@@ -100,10 +117,13 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </main>
 </body>
+
 <?php
     $this->load->view('v2/init/footer');
 ?>

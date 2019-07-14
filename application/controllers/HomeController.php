@@ -57,10 +57,11 @@ class HomeController extends CI_Controller {
 
             if (sizeof($object) > 0){
                 $session_data = array(
-                    'id_alumno' => $object[0]['id_alumno'],
+                    'id' => $object[0]['id_alumno'],
                     'nombre' => $object[0]['nombre'],
                     'apellidos' => $object[0]['apellidos'],
-                    'access' => 'true'
+                    'access' => 'user',
+                    'allow' => 'true'
                 );
                 $this -> session -> set_userdata($session_data);
                 redirect($this->versionName.'/alumno');

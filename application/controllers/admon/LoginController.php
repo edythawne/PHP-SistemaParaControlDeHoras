@@ -33,10 +33,11 @@ class LoginController extends CI_Controller {
      * Index Method
      */
     public function index(){
-        $this -> load -> view($this->versionName.'/admon/login');
+        if ($this -> session -> userdata('nombre')){
+            redirect($this->versionName.'/alumno');
+        }
 
-        $this -> load -> model('admon_model');
-        $object = $this -> admon_model -> buscarAdmon('sdfsdf', 'sdv');
+        $this -> load -> view($this->versionName.'/admon/login');
     }
 
     /**
@@ -60,12 +61,11 @@ class LoginController extends CI_Controller {
                     'id_admin' => $object[0]['id_admin'],
                     'nombre' => $object[0]['nombre'],
                     'apellidos' => $object[0]['apellidos'],
-                    'access' => 'true'
+                    'access' => 'admon',
+                    'allow' => 'true'
                 );
-                //$this -> session -> set_userdata($session_data);
-                //redirect($this->versionName.'/alumno');
-
-                print_r(json_encode($session_data));
+                $this -> session -> set_userdata($session_data);
+                redirect($this->versionName.'/admon/index');
             } else {
                 $this->index();
             }

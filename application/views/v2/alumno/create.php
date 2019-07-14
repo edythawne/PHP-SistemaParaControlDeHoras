@@ -47,7 +47,7 @@
 <body>
     <?php
         $this -> load -> view('v2/alumno/nav_slide', array('uri' => 'create_day'));
-        $this -> load -> view('v2/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Crear Registro', 'nav_action' => 'menu', 'nav_icon' => 'menu', 'nav_href' => '')));
+        $this -> load -> view('v2/alumno/nav_bar', array('nav_params' => array('toolbar' => 'Crear Registro')));
     ?>
 
     <main class="">

@@ -1,10 +1,13 @@
-   -- Insertar administrador
+	-- USE
+     USE Ford32_Servicios;
+
+	-- Insertar administrador
     INSERT INTO Administradores(nombre, apellidos, usuario, contrasena) VALUES
         ('Edy', 'Thawne', '69d72300b5b4cf697087a892d35ba47518817cc6', '69d72300b5b4cf697087a892d35ba47518817cc6');
 
     -- Registro de prueba
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, usuario, contrasena) VALUES
-        (1, 'Valentina', 'Perez Miranda', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441');
+        (1, 'Charlotte', 'Schaizmen', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441');
         
 	-- Registro de Pruebas
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
