@@ -10,7 +10,7 @@
     <?php
         $this -> load -> view('v2/admon/nav_slide',  array('uri' => 'index'));
         $this -> load -> view('v2/admon/nav_bar', array('nav_params' => array('toolbar' => 'Admon')));
-        //$this -> load -> view('v2/init/notifier');
+        $this -> load -> view('v2/init/notifier');
     ?>
     <main>
         <div class="">
@@ -69,7 +69,7 @@
                                                data-show-activity="false">
                                             <thead>
                                             <tr>
-                                                <th class="text-center">ID</th>
+                                                <th data-sortable="true" class="text-center">ID</th>
                                                 <th data-sortable="true" class="text-center">Nombre & Apellidos</th>
                                                 <th data-sortable="true" data-cls-column="text-center" class="text-center">T. Cumplido</th>
                                                 <th data-sortable="true" data-cls-column="text-center" class="text-center"">T. Restante</th>

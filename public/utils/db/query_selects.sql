@@ -79,3 +79,5 @@
     FROM Alumnos
     INNER JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno AND Alumnos.estado = 'ACTIVO'  GROUP BY Alumnos.id_alumno;
 
+
+	SET @id_alumno = (SELECT id_alumno FROM Alumnos WHERE id_alumno = 8);

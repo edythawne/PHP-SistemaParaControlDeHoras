@@ -45,7 +45,6 @@ class AdmonController extends CI_Controller {
         $dataAdmon = array('infoHorasAlumnos' => $consult_1);
 
         $this -> load -> view($this->versionName.'/admon/index', $dataAdmon);
-
     }
 
     /**
@@ -56,11 +55,17 @@ class AdmonController extends CI_Controller {
         $this -> validateSession();
 
         $consult_1 = $this -> admon_model -> mostrarAlumnoFechasServicio($num);
-        $consult_2 = $this -> user_model -> horasCumplidas($num);
-        $dataAdmon = array('alumnosFechasServicio' => $consult_1[0], 'horasCumplidas' => $consult_2[0]['HorasCumplidas'],
-            'horasRestantes' => (480 - $consult_2[0]['HorasCumplidas']), 'nombreAlumno' => $consult_1[0]['nombre'].' '.$consult_1[0]['apellidos']);
 
-        $this -> load -> view($this->versionName.'/admon/info_student', $dataAdmon);
+        if ($consult_1[0]['id_alumno'] != NULL){
+            $consult_2 = $this -> user_model -> horasCumplidas($num);
+            $dataAdmon = array('alumnosFechasServicio' => $consult_1[0], 'horasCumplidas' => $consult_2[0]['HorasCumplidas'],
+                'horasRestantes' => (480 - $consult_2[0]['HorasCumplidas']), 'nombreAlumno' => $consult_1[0]['nombre'].' '.$consult_1[0]['apellidos']);
+
+            $this -> load -> view($this->versionName.'/admon/info_student', $dataAdmon);
+        } else {
+            $this -> session -> set_userdata('message', "No existe un usuario con la ID: $num");
+            redirect($this->versionName.'/admon/index');
+        }
     }
 
     /**
