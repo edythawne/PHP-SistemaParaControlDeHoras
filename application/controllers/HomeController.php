@@ -71,5 +71,6 @@ class HomeController extends CI_Controller {
         }
     }
 
-
 }
+
+?>

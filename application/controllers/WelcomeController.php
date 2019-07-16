@@ -24,3 +24,6 @@ class WelcomeController extends CI_Controller {
 		redirect("$version/home");
 	}
 }
+
+
+?>

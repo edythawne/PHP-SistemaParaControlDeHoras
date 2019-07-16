@@ -83,7 +83,7 @@
                                         <?php krsort($array_fechas); ?>
 
 
-                                        <table class="table striped table-border cell-border row-hover row-border"
+                                        <table class="table striped responsive-table table-border cell-border row-hover row-border"
                                                 data-role="table"
                                                 data-cls-table-top="row flex-nowrap"
                                                 data-cls-search="cell-md-8"

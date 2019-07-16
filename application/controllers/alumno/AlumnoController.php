@@ -222,3 +222,6 @@ class AlumnoController extends CI_Controller {
         }
     }
 }
+
+
+?>

@@ -56575,3 +56575,64 @@ input[dir=rtl] {
     -webkit-box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
     box-shadow: 0 8px 17px 2px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12), 0 5px 5px -3px rgba(0, 0, 0, 0.2);
 }
+
+@media only screen and (max-width: 992px) {
+    table.responsive-table {
+        width: 100%;
+
+        border-spacing: 0;
+        display: block;
+        position: relative;
+        /* sort out borders */
+    }
+    table.responsive-table td:empty:before {
+        content: '\00a0';
+    }
+    table.responsive-table th,
+    table.responsive-table td {
+        margin: 0;
+        vertical-align: top;
+    }
+    table.responsive-table th {
+        text-align: left;
+    }
+    table.responsive-table thead {
+        display: block;
+        float: left;
+    }
+    table.responsive-table thead tr {
+        display: block;
+        padding: 0 2px 0 0;
+    }
+    table.responsive-table thead tr th::before {
+        content: "\00a0";
+    }
+    table.responsive-table tbody {
+        display: block;
+        width: auto;
+        position: relative;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    table.responsive-table tbody tr {
+        display: inline-block;
+        vertical-align: top;
+    }
+    table.responsive-table th {
+        display: block;
+        text-align: right;
+    }
+    table.responsive-table td {
+        display: block;
+        min-height: 1.25em;
+        text-align: left;
+    }
+    table.responsive-table tr {
+        border-bottom: none;
+        padding: 0 1px;
+    }
+    table.responsive-table thead {
+        border: 0;
+
+    }
+}

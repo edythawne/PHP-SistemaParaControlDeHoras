@@ -5,7 +5,6 @@
     $alumno = $_SESSION['nombre'].' '.$_SESSION['apellidos'];
 
 ?>
-
 <body>
     <?php
         $this -> load -> view('v2/admon/nav_slide',  array('uri' => 'index'));
@@ -17,7 +16,7 @@
             <div class="p-2">
                 <div class="row">
 
-                    <div class="cell-sm-12 cell-md-3 cell-lg-4">
+                    <div class="cell-sm-12 cell-md-4 cell-lg-4">
                         <div class="card">
                             <div class="pr-2 pt-4 pb-2 pl-2">
                                 <ul data-role="listview" data-view="list" class="flex-align-center">
@@ -32,7 +31,7 @@
                         </div>
                     </div>
 
-                    <div class="cell-sm-12 cell-md-3 cell-lg-4">
+                    <div class="cell-sm-12 cell-md-4 cell-lg-4">
                         <div class="card">
                             <div class="pr-2 pt-4 pb-2 pl-2">
                                 <ul data-role="listview" data-view="list" class="flex-align-center">
@@ -59,7 +58,7 @@
                             <div class="card-content p-2">
                                 <div class="row">
                                     <div class="cell-12">
-                                        <table class="table striped table-border cell-border row-hover row-border"
+                                        <table class="table striped responsive-table table-border cell-border row-hover row-border"
                                                data-role="table"
                                                data-cls-table-top="row flex-nowrap"
                                                data-cls-search="cell-md-8"
@@ -71,8 +70,8 @@
                                             <tr>
                                                 <th data-sortable="true" class="text-center">ID</th>
                                                 <th data-sortable="true" class="text-center">Nombre & Apellidos</th>
-                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">T. Cumplido</th>
-                                                <th data-sortable="true" data-cls-column="text-center" class="text-center"">T. Restante</th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">Activo</th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center"">Restante</th>
                                                 <th data-cls-column="text-center" class="text-center">V. Info</th>
                                             </tr>
                                             </thead>
