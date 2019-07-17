@@ -81,3 +81,10 @@
 
 
 	SET @id_alumno = (SELECT id_alumno FROM Alumnos WHERE id_alumno = 8);
+    
+    
+    SELECT id_alumno, nombre, apellidos, telefono, estado, tipo_servicio, periodo, duracion 
+    INTO @id_alumno, @nombre, @apellidos, @telefono, @estado, @tipo_servicio, @periodo, @duracion
+    FROM Alumnos WHERE id_alumno = 3;
+    
+    SELECT @id_alumno, @nombre, @apellidos, @telefono, @estado, @tipo_servicio, @periodo, @duracion;

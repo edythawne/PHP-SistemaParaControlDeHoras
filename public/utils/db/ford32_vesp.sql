@@ -23,6 +23,9 @@
         apellidos VARCHAR(100) NOT NULL,
         telefono VARCHAR(100) NULL,
         estado VARCHAR(15) DEFAULT 'ACTIVO',
+        tipo_servicio VARCHAR(50) NOT NULL,
+		periodo VARCHAR(100) NOT NULL,
+        duracion INTEGER DEFAULT 480,
         usuario VARCHAR(100) NOT NULL,
         contrasena VARCHAR(100) NOT NULL,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
@@ -49,19 +52,20 @@
     DELIMITER //
 		CREATE PROCEDURE alumno_fechas_servicio (IN id INT)
 		BEGIN
-			SET @id_alumno = (SELECT id_alumno FROM Alumnos WHERE id_alumno = id);
-                        
-			SET @nombre = (SELECT nombre FROM Alumnos WHERE id_alumno = id);
-			SET @apellidos = (SELECT apellidos FROM Alumnos WHERE id_alumno = id);
-			SET @horas_cumplidas = (SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = id);
+        
+			SELECT id_alumno, nombre, apellidos, telefono, estado, tipo_servicio, periodo, duracion 
+			INTO @id_alumno, @nombre, @apellidos, @telefono, @estado, @tipo_servicio, @periodo, @duracion
+			FROM Alumnos WHERE id_alumno = id;
+				                        
+			SET @horas_cumplidas = (SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = @id_alumno);
 			SET @fechas = (SELECT JSON_ARRAYAGG(JSON_OBJECT(
 					'fecha_asistencia', DATE(Horarios.al_salida), 
                     'hora_entrada', DATE_FORMAT(Horarios.al_entrada, '%T'), 
                     'hora_salida', DATE_FORMAT(Horarios.al_salida, '%T'),
 					'horas_acumuladas', TIMESTAMPDIFF(MINUTE, al_entrada, al_salida) DIV 60)
 				) AS fechas FROM Alumnos
-			INNER JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno AND Horarios.fk_alumno = id);
+			INNER JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno AND Horarios.fk_alumno = @id_alumno);
 			
-			SELECT @id_alumno AS id_alumno, @nombre AS nombre, @apellidos AS apellidos, @horas_cumplidas AS horas_cumplidas, @fechas AS fechas;
+			SELECT  @id_alumno AS id_a, @nombre AS nom, @apellidos AS ape, @telefono AS tel, @estado AS est, @tipo_servicio AS ti_s, @periodo AS per, @duracion AS dur, @horas_cumplidas AS hr_c, @fechas AS fec;
 		END//
     DELIMITER ;

@@ -18,6 +18,7 @@ class ReportController extends CI_Controller {
 
         // Cargar librerías
         $this -> load -> helper('url');
+        $this -> load -> helper('crypto_helper');
         $this -> load -> helper('materializecss_helper');
 
         // Model

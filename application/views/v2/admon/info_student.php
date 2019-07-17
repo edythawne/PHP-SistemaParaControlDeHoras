@@ -42,7 +42,7 @@
                                         <div data-role="panel">
                                             <div class="row">
                                                 <div class="cell-8">
-                                                    Horas Cumplidas
+                                                    Horas Restantes
                                                 </div>
                                                 <div class="cell-4 text-right">
                                                     <?php echo $horasRestantes; ?> hrs.

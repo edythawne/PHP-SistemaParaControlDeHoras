@@ -77,12 +77,12 @@
         <tbody>
             <tr align="center">
                 <th colspan="4">
-                    <h4>ESCUELA PRIMARIA FORD 32</h4>
+                    ESCUELA PRIMARIA FORD 32
                 </th>
             </tr>
             <tr align="center">
                 <th colspan="4">
-                    <h5>REPORTE SOBRE HORAS DE SERVICIO</h5>
+                    REPORTE SOBRE HORAS DE SERVICIO
                 </th>
             </tr>
         </tbody>
@@ -104,15 +104,17 @@
                 <td>2017-2018</td>
             </tr>
             <tr>
-                <td><b>Nombre</b></td>
-                <td>Eduardo Ramires Perez</td>
                 <td><b>Periodo</b></td>
-                <td>2017-2018</td>
+                <td>Eduardo Ramires Perez</td>
+                <td><b>Horas Cumplidas</b></td>
+                <td>0 de 480</td>
             </tr>
         </tbody>
     </table>
 
 
+    <?php echo encrypt('7828867481').'<br>'; ?>
+    <?php echo decrypt('l7oqCYFdutPx5f3a9G2Ex/VDgk3aWoKgflsLRKWxOnE='); ?>
 
 
     <div class="title"
