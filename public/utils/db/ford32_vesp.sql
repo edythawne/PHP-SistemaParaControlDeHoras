@@ -23,6 +23,7 @@
         apellidos VARCHAR(100) NOT NULL,
         telefono VARCHAR(100) NULL,
         estado VARCHAR(15) DEFAULT 'ACTIVO',
+        especialidad VARCHAR(200) NOT NULL,
         tipo_servicio VARCHAR(50) NOT NULL,
 		periodo VARCHAR(100) NOT NULL,
         duracion INTEGER DEFAULT 480,
@@ -50,22 +51,23 @@
     
     -- CREATE PROCEDURE 
     DELIMITER //
-		CREATE PROCEDURE alumno_fechas_servicio (IN id INT)
+		CREATE PROCEDURE alumno_toda_informacion (IN id INT)
 		BEGIN
         
-			SELECT id_alumno, nombre, apellidos, telefono, estado, tipo_servicio, periodo, duracion 
-			INTO @id_alumno, @nombre, @apellidos, @telefono, @estado, @tipo_servicio, @periodo, @duracion
+			SELECT id_alumno, nombre, apellidos, telefono, especialidad, estado, tipo_servicio, periodo, duracion 
+			INTO @id_alumno, @nombre, @apellidos, @telefono, @especialidad, @estado, @tipo_servicio, @periodo, @duracion
 			FROM Alumnos WHERE id_alumno = id;
 				                        
-			SET @horas_cumplidas = (SELECT SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas FROM Horarios WHERE fk_alumno = @id_alumno);
-			SET @fechas = (SELECT JSON_ARRAYAGG(JSON_OBJECT(
-					'fecha_asistencia', DATE(Horarios.al_salida), 
+			SET @horas_cumplidas = (SELECT SEC_TO_TIME(SUM(TIMESTAMPDIFF(SECOND, al_entrada, al_salida))) FROM Horarios WHERE fk_alumno = @id_alumno);
+			SET @horas_restantes = (@duracion - @horas_cumplidas);
+            SET @fechas = (SELECT JSON_ARRAYAGG(JSON_OBJECT(
+					'fecha_asistencia', DATE(Horarios.al_entrada), 
                     'hora_entrada', DATE_FORMAT(Horarios.al_entrada, '%T'), 
                     'hora_salida', DATE_FORMAT(Horarios.al_salida, '%T'),
-					'horas_acumuladas', TIMESTAMPDIFF(MINUTE, al_entrada, al_salida) DIV 60)
+					'horas_acumuladas', DATE_FORMAT(SEC_TO_TIME(TIMESTAMPDIFF(SECOND, al_entrada, al_salida)), '%T'))
 				) AS fechas FROM Alumnos
 			INNER JOIN Horarios ON Alumnos.id_alumno = Horarios.fk_alumno AND Horarios.fk_alumno = @id_alumno);
 			
-			SELECT  @id_alumno AS id_a, @nombre AS nom, @apellidos AS ape, @telefono AS tel, @estado AS est, @tipo_servicio AS ti_s, @periodo AS per, @duracion AS dur, @horas_cumplidas AS hr_c, @fechas AS fec;
+			SELECT  @id_alumno AS id_a, @nombre AS nom, @apellidos AS ape, @telefono AS tel, @especialidad AS esp, @estado AS est, @tipo_servicio AS ti_s, @periodo AS per, @duracion AS dur, @horas_cumplidas AS hr_c, @horas_restantes AS hr_r, @fechas AS fec;
 		END//
     DELIMITER ;

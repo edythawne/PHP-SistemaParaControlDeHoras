@@ -12,6 +12,22 @@ class User_model extends CI_Model {
     }
 
     /**
+     * Extrae todos los datos del alumno
+     * @param $id
+     * @return mixed
+     */
+    public function mostrarTodaInformacionAlumno($id){
+        $this -> load -> database();
+        $sql = "CALL alumno_toda_informacion($id);";
+        $query = $this -> db -> query($sql);
+
+        $result =  $query -> result_array();
+        $this -> db -> close();
+
+        return $result;
+    }
+
+    /**
      * Busca un alumno según su usuario y contraseña
      * @param $user
      * @param $password
@@ -38,7 +54,7 @@ class User_model extends CI_Model {
     public function horasCumplidas($id_alumno){
         $this -> load -> database();
 
-        $this -> db -> select("SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) DIV 60 AS HorasCumplidas");
+        $this -> db -> select("SUM(TIMESTAMPDIFF(MINUTE, al_entrada, al_salida)) / 60 AS HorasCumplidas");
         $this -> db -> where("fk_alumno", $id_alumno);
         $query = $this -> db -> get("Horarios");
         $result =  $query -> result_array();
@@ -158,11 +174,6 @@ class User_model extends CI_Model {
     }
 
     public function mostrarRegistrosPaginacion($id_alumno, $start){
-        $this -> load -> database();
 
-        $this -> db -> where ('fk_alumno', $id_alumno);
-
-
-        $this -> db -> close();
     }
 }

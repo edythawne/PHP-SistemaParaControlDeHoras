@@ -76,9 +76,9 @@ class Admon_model extends CI_Model {
      * @param $id
      * @return mixed
      */
-    public function mostrarAlumnoFechasServicio($id){
+    public function mostrarTodaInformacionAlumno($id){
         $this -> load -> database();
-        $sql = "CALL alumno_fechas_servicio($id);";
+        $sql = "CALL alumno_toda_informacion($id);";
         $query = $this -> db -> query($sql);
 
         $result =  $query -> result_array();

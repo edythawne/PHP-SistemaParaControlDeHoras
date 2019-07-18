@@ -17,6 +17,7 @@ class AlumnoController extends CI_Controller {
 
         // Cargar librerias
         $this -> load -> helper('url');
+        $this -> load -> helper('crypto_helper');
         $this -> load -> library('form_validation');
 
         if ($this -> versionName == 'v1'){
@@ -36,15 +37,13 @@ class AlumnoController extends CI_Controller {
         $this -> validateSession();
 
         // Consultas
-        $consult_1 = $this -> user_model -> horasCumplidas($this -> session -> userdata('id'));
-        $consult_2 = $this -> user_model -> mostrarPrimerosRegistros($this -> session -> userdata('id'));
-        $consult_3 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id'));
-        $consult_4 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id')));
+        $consult_1 = $this -> user_model -> mostrarTodaInformacionAlumno($this -> session -> userdata('id'));
+        $consult_2 = $this -> user_model -> checarRegistroHoy($this -> session -> userdata('id'));
+        $consult_3 = count($this -> user_model -> mostrarRegistroHoy($this -> session -> userdata('id')));
 
         //$this -> user_model -> contarTodoRegistroAlumno($this -> session -> userdata('id'))
 
-        $dataStudent = array('horasCumplidas' => $consult_1[0]['HorasCumplidas'], 'horasRestantes' => (480 - $consult_1[0]['HorasCumplidas']),
-            'registroHorasCumplidas' => $consult_2, 'checarRegistroHoy' => $consult_3, 'checarRegistroHoyCompleto' => $consult_4);
+        $dataStudent = array('alumnoServicio' => $consult_1[0], 'checarRegistroHoy' => $consult_2, 'checarRegistroHoyCompleto' => $consult_3);
 
         $this -> load -> view($this->versionName.'/alumno/index', $dataStudent);
     }

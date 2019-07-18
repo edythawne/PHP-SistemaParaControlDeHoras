@@ -14,35 +14,32 @@
     <main>
         <div class="">
             <div class="p-2">
-                <div class="row">
+                <div class="row p-2">
 
                     <div class="cell-sm-12 cell-md-4 cell-lg-4">
-                        <div class="card">
-                            <div class="pr-2 pt-4 pb-2 pl-2">
-                                <ul data-role="listview" data-view="list" class="flex-align-center">
-                                    <li data-caption="Administradores">
-                                        <ul class="pt-2">
-                                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Crear Admon"></li>
-                                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Mostrar Admon"></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div data-role="panel" class="">
+                            <ul data-role="listview" data-view="list" class="flex-align-center">
+                                <li data-caption="Administradores">
+                                    <ul class="pt-2">
+                                        <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Crear Admon"></li>
+                                        <li data-icon="<span class='mif-folder fg-green'>" data-caption="Mostrar Admon"></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
+
                     </div>
 
                     <div class="cell-sm-12 cell-md-4 cell-lg-4">
-                        <div class="card">
-                            <div class="pr-2 pt-4 pb-2 pl-2">
-                                <ul data-role="listview" data-view="list" class="flex-align-center">
-                                    <li data-caption="Alumnos de Servicio">
-                                        <ul class="pt-2">
-                                            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Crear Alumno"></li>
-                                            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Mostrar Alumnos"></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
+                        <div data-role="panel">
+                            <ul data-role="listview" data-view="list" class="flex-align-center">
+                                <li data-caption="Alumnos de Servicio">
+                                    <ul class="pt-2">
+                                        <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Crear Alumno"></li>
+                                        <li data-icon="<span class='mif-folder fg-green'>" data-caption="Mostrar Alumnos"></li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -68,10 +65,10 @@
                                                data-show-activity="false">
                                             <thead>
                                             <tr>
-                                                <th data-sortable="true" class="text-center">ID</th>
-                                                <th data-sortable="true" class="text-center">Nombre & Apellidos</th>
-                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">Activo</th>
-                                                <th data-sortable="true" data-cls-column="text-center" class="text-center"">Restante</th>
+                                                <th data-sortable="true" class="text-center">ID </th>
+                                                <th data-sortable="true" class="text-center">Nombre </th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center">Activo </th>
+                                                <th data-sortable="true" data-cls-column="text-center" class="text-center"">Restante </th>
                                                 <th data-cls-column="text-center" class="text-center">V. Info</th>
                                             </tr>
                                             </thead>
