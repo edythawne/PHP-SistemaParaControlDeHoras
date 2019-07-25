@@ -18,9 +18,7 @@ class ReportController extends CI_Controller {
 
         // Cargar librerías
         $this -> load -> library('pdf');
-        $this -> load -> helper('url');
-        $this -> load -> helper('crypto_helper');
-        $this -> load -> helper('materializecss_helper');
+        $this -> load -> helper(array('url', 'crypto_helper', 'materializecss_helper'));
 
         // Model
         $this -> load -> model('admon_model');
@@ -54,13 +52,6 @@ class ReportController extends CI_Controller {
             $this -> session -> set_userdata('message', "No existe un usuario con la ID: $num");
             redirect($this->versionName.'/admon/index');
         }
-    }
-
-
-    public function console_log( $data ){
-        echo '<script>';
-        echo 'console.log('. json_encode( $data ) .')';
-        echo '</script>';
     }
 
     /**

@@ -18,6 +18,7 @@
 
                     <div class="cell-sm-12 cell-md-4 cell-lg-4">
                         <div data-role="panel" class="">
+
                             <ul data-role="listview" data-view="list" class="flex-align-center">
                                 <li data-caption="Administradores">
                                     <ul class="pt-2">
@@ -35,7 +36,10 @@
                             <ul data-role="listview" data-view="list" class="flex-align-center">
                                 <li data-caption="Alumnos de Servicio">
                                     <ul class="pt-2">
-                                        <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Crear Alumno"></li>
+                                        <li
+                                            data-icon="<span class='mif-folder fg-orange'>"
+                                            data-caption="Crear Alumno" onclick="openlink('<?php echo base_url('index.php/v2/admon/student/create'); ?>')">
+                                        </li>
                                         <li data-icon="<span class='mif-folder fg-green'>" data-caption="Mostrar Alumnos"></li>
                                     </ul>
                                 </li>
@@ -56,13 +60,8 @@
                                 <div class="row">
                                     <div class="cell-12">
                                         <table class="table striped responsive-table table-border cell-border row-hover row-border"
-                                               data-role="table"
-                                               data-cls-table-top="row flex-nowrap"
-                                               data-cls-search="cell-md-8"
-                                               data-cls-rows-count="cell-md-4"
-                                               data-rows="10"
-                                               data-rows-steps="10, 15, 100"
-                                               data-show-activity="false">
+                                               data-role="table" data-cls-table-top="row flex-nowrap" data-cls-search="cell-md-8"
+                                               data-cls-rows-count="cell-md-4" data-rows="10" data-rows-steps="10, 15, 100" data-show-activity="false">
                                             <thead>
                                             <tr>
                                                 <th data-sortable="true" class="text-center">ID </th>
@@ -79,7 +78,7 @@
                                                     <td><?php echo $iha['nombre'].' '.$iha['apellidos']; ?></td>
                                                     <td><?php echo $iha['horas_cumplidas']; ?></td>
                                                     <td><?php echo (480 - $iha['horas_cumplidas']); ?></td>
-                                                    <td><a href="<?php echo base_url('index.php/v2/admon/info_student/'.$iha['id_alumno']) ?>" class="button mini">Ver</a></td>
+                                                    <td><a href="<?php echo base_url('index.php/v2/admon/student/'.$iha['id_alumno']) ?>" class="button mini">Ver</a></td>
                                                 </tr>
                                             <?php endforeach; ?>
                                             </tbody>
@@ -95,6 +94,14 @@
             </div>
         </div>
     </main>
+
+    <script>
+        function openlink(url) {
+            window.location.replace(url);
+        }
+    </script>
+
+
 </body>
 
 <?php

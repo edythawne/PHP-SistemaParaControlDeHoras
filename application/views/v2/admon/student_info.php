@@ -4,7 +4,7 @@
 
 <body>
     <?php
-        $this -> load -> view('v2/admon/nav_slide',  array('uri' => 'info_student'));
+        $this -> load -> view('v2/admon/nav_slide',  array('uri' => 'student_info'));
         $this -> load -> view('v2/admon/nav_bar', array('nav_params' => array('toolbar' => 'Admon')));
     ?>
 

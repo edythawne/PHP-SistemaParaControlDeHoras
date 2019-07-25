@@ -16,15 +16,8 @@ class AlumnoController extends CI_Controller {
         $this -> versionName = $this -> config -> item('versionName');
 
         // Cargar librerias
-        $this -> load -> helper('url');
-        $this -> load -> helper('crypto_helper');
         $this -> load -> library('form_validation');
-
-        if ($this -> versionName == 'v1'){
-            $this -> load -> helper('materializecss_helper');
-        } else {
-            $this -> load -> helper('metro_helper');
-        }
+        $this -> load -> helper(array('url', 'form', 'crypto_helper', 'metro_helper'));
 
         // Model
         $this -> load -> model('user_model');
@@ -125,15 +118,12 @@ class AlumnoController extends CI_Controller {
         $this -> form_validation -> set_rules('date', 'Date', 'required|callback_check_date_format');
         $this -> form_validation -> set_rules('time', 'Time', 'required|callback_check_time_format');
 
-        if ($this -> form_validation -> run() === FALSE){
+        if ($this -> form_validation -> run() == FALSE){
             $this -> store();
         } else {
             $format_date = date('Y-m-d', strtotime($this -> input -> post('date')));
             $format_time = date("H:i:s", strtotime($this -> input -> post('time')));
             $data = array('fk_alumno' => $this -> session -> userdata('id'), 'al_entrada' => $format_date.' '.$format_time);
-
-
-            print_r($data);
 
             if ($this -> user_model -> agregarRegistro($data) == 1){
                 $this -> session -> set_userdata('message', '¡Hora de entrada registrada!');

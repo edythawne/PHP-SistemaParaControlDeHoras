@@ -17,15 +17,8 @@ class LoginController extends CI_Controller {
         $this -> versionName = $this -> config -> item('versionName');
 
         // Cargar librerías
-        $this -> load -> helper('url');
-        $this -> load -> helper('form');
         $this -> load -> library('form_validation');
-
-        if ($this -> versionName == 'v1'){
-            $this -> load -> helper('materializecss_helper');
-        } else {
-            $this -> load -> helper('metro_helper');
-        }
+        $this -> load -> helper(array('url', 'form', 'crypto_helper', 'metro_helper'));
     }
 
 

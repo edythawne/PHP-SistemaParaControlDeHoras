@@ -15,7 +15,10 @@
         <span class="subtitle fg-white"><?php echo $_SESSION['apellidos'];?></span>
     </div>
     <ul class="sidebar-menu">
-        <?php if ($uri == 'info_student'): ?>
+        <?php if ($uri == 'student_info'): ?>
+            <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
+        <?php endif; ?>
+        <?php if ($uri == 'student_create'): ?>
             <li><a href="<?php echo base_url('index.php'); ?>"><span class="mif-home icon"></span>Home</a></li>
         <?php endif; ?>
         <li class="divider"></li>

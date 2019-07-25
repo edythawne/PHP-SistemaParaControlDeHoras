@@ -8,41 +8,41 @@
     $time = date('H:i:s');
 ?>
 
-    <style>
+<style>
+    .login-form {
+        width: 100%;
+    }
+
+    @media (min-width: 576px) {
         .login-form {
-            width: 100%;
+            max-width: 440px;
         }
+    }
 
-        @media (min-width: 576px) {
-            .login-form {
-                max-width: 440px;
-            }
+    @media (min-width: 768px) {
+        .login-form {
+            max-width: 600px;
         }
+    }
 
-        @media (min-width: 768px) {
-            .login-form {
-                max-width: 600px;
-            }
+    @media (min-width: 992px) {
+        .login-form {
+            max-width: 840px;
         }
+    }
 
-        @media (min-width: 992px) {
-            .login-form {
-                max-width: 840px;
-            }
+    @media (min-width: 1200px) {
+        .login-form {
+            max-width: 840px;
         }
+    }
 
-        @media (min-width: 1200px) {
-            .login-form {
-                max-width: 840px;
-            }
+    @media (min-width: 1452px) {
+        .login-form {
+            max-width: 840px;
         }
-
-        @media (min-width: 1452px) {
-            .login-form {
-                max-width: 840px;
-            }
-        }
-    </style>
+    }
+</style>
 
 <body>
     <?php

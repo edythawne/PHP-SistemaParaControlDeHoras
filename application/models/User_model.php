@@ -94,7 +94,6 @@ class User_model extends CI_Model {
         $result = $this -> db -> insert('Horarios', $data);
         $this -> db -> close();
 
-        print_r($result);
         return $result;
     }
 
@@ -173,7 +172,16 @@ class User_model extends CI_Model {
         return $result[0]['registros'];
     }
 
-    public function mostrarRegistrosPaginacion($id_alumno, $start){
+    /**
+     * Crear usuario
+     * @param $data
+     * @return mixed
+     */
+    public function crearAlumno($data){
+        $this -> load -> database();
+        $result = $this -> db -> insert('Alumnos', $data);
+        $this -> db -> close();
 
+        return $result;
     }
 }

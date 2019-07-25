@@ -17,18 +17,11 @@ class AdmonController extends CI_Controller {
         $this -> versionName = $this -> config -> item('versionName');
 
         // Cargar librerías
-        $this -> load -> helper('url');
-        $this -> load -> helper('form');
-        $this -> load -> helper('crypto_helper');
         $this -> load -> library('form_validation');
-
-        if ($this -> versionName == 'v1'){
-            $this -> load -> helper('materializecss_helper');
-        } else {
-            $this -> load -> helper('metro_helper');
-        }
+        $this -> load -> helper(array('url', 'form', 'crypto_helper', 'metro_helper'));
 
         // Model
+        $this -> load -> model('user_model');
         $this -> load -> model('admon_model');
     }
 
@@ -48,6 +41,53 @@ class AdmonController extends CI_Controller {
     }
 
     /**
+     * Permite mostrar la vista para crear ina
+     */
+    public function storeStudent(){
+        // Validacion de Session
+        $this -> validateSession();
+
+        $this -> load -> view($this->versionName.'/admon/student_create', null);
+    }
+
+    /**
+     * Metodo para guardar el alumno
+     */
+    public function saveStudent() {
+        // Validar el formulario
+        $this -> form_validation -> set_rules('nom', 'Nombre', 'required');
+        $this -> form_validation -> set_rules('ape', 'Apellido', 'required');
+        $this -> form_validation -> set_rules('tel', 'Telefono', 'required');
+        $this -> form_validation -> set_rules('esp', 'Especialidad', 'required');
+        $this -> form_validation -> set_rules('tse', 'Tipo de Servicio', 'required');
+        $this -> form_validation -> set_rules('per', 'Periodo', 'required');
+        $this -> form_validation -> set_rules('dur', 'Duración', 'required');
+
+        if ($this -> form_validation -> run() == FALSE) {
+            $this -> storeStudent();
+        } else {
+            $data = array(
+                'nombre' => $this -> input -> post('nom'), 'apellidos' => $this -> input -> post('ape'),
+                'telefono' => encrypt($this -> input -> post('tel')), 'especialidad' => $this -> input -> post('esp'),
+                'tipo_servicio' => $this -> input -> post('tse'), 'periodo' => $this -> input -> post('per'),
+                'duracion' => $this -> input -> post('dur'), 'usuario' => sha1($this -> input -> post('tel')),
+                'contrasena' => sha1($this -> input -> post('tel'))
+            );
+
+            if ($this -> user_model -> crearAlumno($data) == 1){
+                $this -> session -> set_userdata('message', '¡Alumno registrado!');
+                redirect($this->versionName.'/admon');
+            } else {
+                $this -> session -> set_userdata('message', '¡Error al registrar alumno!');
+            }
+        }
+    }
+
+    public function storeAdmon(){
+
+    }
+
+    /**
      * @param $num
      */
     public function show($num){
@@ -58,10 +98,10 @@ class AdmonController extends CI_Controller {
 
         if ($consult_1[0]['id_a'] != NULL){
             $dataAdmon = array('alumnoServicio' => $consult_1[0]);
-            $this -> load -> view($this->versionName.'/admon/info_student', $dataAdmon);
+            $this -> load -> view($this->versionName.'/admon/student_info', $dataAdmon);
         } else {
             $this -> session -> set_userdata('message', "No existe un usuario con la ID: $num");
-            redirect($this->versionName.'/admon/index');
+            redirect($this->versionName.'/admon');
         }
     }
 

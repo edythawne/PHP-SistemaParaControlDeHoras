@@ -56,7 +56,9 @@ $versionName = $this -> config -> item('versionName');
 */
 // -- ----------------------
 $route[$versionName.'/admon/report/f1/(:num)'] = 'report/ReportController/genRepStuListDate/$1';
-$route[$versionName.'/admon/info_student/(:num)'] = 'admon/AdmonController/show/$1';
+// -- ----------------------
+$route[$versionName.'/admon/student/create'] = 'admon/AdmonController/storeStudent';
+$route[$versionName.'/admon/student/(:num)'] = 'admon/AdmonController/show/$1';
 $route[$versionName.'/admon/index'] = 'admon/AdmonController';
 $route[$versionName.'/admon/login'] = 'admon/LoginController';
 // --------------------------
