@@ -49,6 +49,9 @@
 
                 </div>
 
+                <!--<?php  echo encrypt('123456789');  ?>
+                <?php  echo decrypt('SEJjWENlM0FCaVpYK0UvNWdHTm81dz09');  ?> -->
+
 
                 <div class="row">
                     <div class="cell-sm-12 cell-md-12 cell-lg-12">

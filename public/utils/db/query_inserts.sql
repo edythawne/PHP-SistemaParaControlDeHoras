@@ -7,7 +7,7 @@
 
     -- Registro de prueba
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, especialidad, tipo_servicio, periodo, duracion, usuario, contrasena) VALUES
-        (1, 'Charlotte', 'Schaizmen', 'l7oqCYFdutPx5f3a9G2Ex/VDgk3aWoKgflsLRKWxOnE=', 'Programación', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441');
+        (1, 'Charlotte', 'Schaizmen', 'SEJjWENlM0FCaVpYK0UvNWdHTm81dz09', 'Programación', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'f7c3bc1d808e04732adf679965ccc34ca7ae3441', 'f7c3bc1d808e04732adf679965ccc34ca7ae3441');
         
 	-- Registro de Pruebas
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
@@ -17,11 +17,11 @@
 
     -- INSERT FOR ALUMNOS
     INSERT INTO Alumnos(id_alumno, nombre, apellidos, telefono, especialidad, tipo_servicio, periodo, duracion, usuario, contrasena) VALUES
-		(2, 'Melanie', 'García', 'eavWUGr3YIAFzXGhRINtikIcv4FU/+2GToKp8Mvc1t8=', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'd5507c772bd098b984d804b229de023c5b73acdd', 'd5507c772bd098b984d804b229de023c5b73acdd'),
-		(3, 'María Fernanda', 'Pérez Hernández', '7/NXqJ9zkLj8Q1iT3q9OZijyDSw5RqBfj2jbL4TiXzc=', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'fc5b0b882682e9981692cd55dc61622136a81d19', 'fc5b0b882682e9981692cd55dc61622136a81d19'),
-		(4, 'Sarahí', 'García Florencia', 'eZfSMCVocOUKP7BybwlqbZy/tlgYGcbGPh8W1IDEg4s=', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf', '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf'),
-        (5, 'Juan Carlos', 'Cortez Pérez', 'kLMKYegaXFdPNUE/46cD5fOMQEVbENhxJ5z6UmWF20U=', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '9793ac2f7291b701cdf9e49579d476149261e68d', '9793ac2f7291b701cdf9e49579d476149261e68d'), 
-        (6, 'Valentina', 'García Hernández', 'GMLDwKkU86NdQD2U3HanJtB6xKG9BMXsfG9lbwuvvaI=', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5', '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5');
+		(2, 'Melanie', 'García', 'cWtGWnMrVFY4dzJqemQrQU5LWjRHdz09', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'd5507c772bd098b984d804b229de023c5b73acdd', 'd5507c772bd098b984d804b229de023c5b73acdd'),
+		(3, 'María Fernanda', 'Pérez Hernández', 'ZmxvdHVudUN3b0l1MHpMZEo4bEF2dz09', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, 'fc5b0b882682e9981692cd55dc61622136a81d19', 'fc5b0b882682e9981692cd55dc61622136a81d19'),
+		(4, 'Sarahí', 'García Florencia', 'eXZrMWFNYWZieGlPbkp1NGV2RW5tUT09', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf', '82fe9ea32ce3e5b93155c4125de5c1154a4a5daf'),
+        (5, 'Juan Carlos', 'Cortez Pérez', 'ZzFReWFKTnkwbWFCaCsxQlZjVnp0UT09', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '9793ac2f7291b701cdf9e49579d476149261e68d', '9793ac2f7291b701cdf9e49579d476149261e68d'), 
+        (6, 'Valentina', 'García Hernández', 'NjJvMEcyQmtOY1ZrZEk4cmRSbzJIdz09', 'Administración', 'Servicio Social', 'Septiempre 2019 a Febrero 2020', 480, '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5', '7e0f2e9d156b52f5dd466b24b0f4c3ac4dc698d5');
 
     -- Insertar Horarios
     INSERT INTO Horarios (fk_alumno, entrada, salida, al_entrada, al_salida) VALUES
