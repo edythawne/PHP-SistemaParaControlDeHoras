@@ -55,6 +55,7 @@ class ReportController extends CI_Controller {
     }
 
     /**
+     * https://github.com/dompdf/dompdf/issues/1822
      * Validar session
      */
     public function validateSession(){
