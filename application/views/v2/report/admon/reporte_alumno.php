@@ -10,15 +10,15 @@
     }
 
     html {
-        padding-top: 10px;
+        padding-top: 15px;
         background: #e6e6e6;
         text-align: center;
     }
 
     body {
-        width: 730px;
         font-family: 'Droid', 'Helvetica';
-        font-size: 14px;
+        width: 100%;
+        font-size: 20px;
         padding: 30px 40px;
         text-align: left;
         margin: 0 auto;
@@ -59,16 +59,16 @@
         <thead>
             <tr align="center" style="border: 0px">
                 <th>
-                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/gob.jpg';?>" width="150px" height="80px">
+                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/gob.jpg';?>" width="200px" height="110px">
                 </th>
                 <th>
-                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/sev.jpg';?>" width="150px" height="80px">
+                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/sev.jpg';?>" width="200px" height="110px">
                 </th>
                 <th>
-                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/ver.jpg';?>" width="150px" height="80px">
+                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/ver.jpg';?>" width="200px" height="110px">
                 </th>
                 <th>
-                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/ford.jpeg';?>" width="80px" height="80px">
+                    <img src="<?php echo $_SERVER['DOCUMENT_ROOT'].'/servicio/public/utils/img/ford.jpeg';?>" width="110px" height="110px">
                 </th>
             </tr>
         </thead>

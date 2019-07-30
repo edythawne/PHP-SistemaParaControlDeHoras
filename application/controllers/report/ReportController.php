@@ -45,7 +45,9 @@ class ReportController extends CI_Controller {
 
             $name = $consult_1[0]['nom'].' '.$consult_1[0]['ape'];
             $html_content =  $this->load->view($this->versionName.'/report/admon/reporte_alumno', $dataAdmon, true);
+
             $this->pdf->loadHtml($html_content);
+            $this->pdf->setPaper('A4', 'portrait');
             $this->pdf->render();
             $this->pdf->stream('Reporte F1 '.$name.'.pdf', array("Attachment"=>0));
         } else {
