@@ -116,7 +116,14 @@
                     <div class="cell-12">
                         <div class="card">
                             <div class="card-header">
-                                <b>Asistencia</b>
+                                <div class="row">
+									<div class="cell-6">
+										<b>Asistencia</b>
+									</div>
+									<div class="cell-6 text-right">
+										<button class="button light" onclick="openReport('<?php echo $alumnoServicio['id_a']; ?>')">Generar Reporte</button>
+									</div>
+								</div>
                             </div>
                             <div class="card-content p-2">
                                 <div class="row">
@@ -167,6 +174,15 @@
         </div>
     </main>
 </body>
+
+<script>
+	function openReport(id) {
+		var version = "<?php echo  $this -> config -> item('versionName'); ?>";
+		var url = "<?php echo base_url(); ?>/index.php/" + version + "/admon/report/f1/" + id;
+        console.log('Project Version: ' + url);
+        window.open(url, '_blank');
+    }
+</script>
 
 <?php
     $this->load->view('v2/init/footer');
