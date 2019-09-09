@@ -79,7 +79,13 @@
                                                 <tr>
                                                     <td><?php echo $iha['id_alumno']; ?></td>
                                                     <td><?php echo $iha['nombre'].' '.$iha['apellidos']; ?></td>
-                                                    <td><?php echo $iha['horas_cumplidas']; ?></td>
+                                                    <td>
+														<?php if ($iha['horas_cumplidas'] == null):  ?>
+														<?php echo '0'; ?>
+														<?php else: ?>
+														<?php echo $iha['horas_cumplidas']; ?>
+														<?php endif; ?>
+													</td>
                                                     <td><?php echo (480 - $iha['horas_cumplidas']); ?></td>
                                                     <td><a href="<?php echo base_url('index.php/v2/admon/student/'.$iha['id_alumno']) ?>" class="button mini">Ver</a></td>
                                                 </tr>

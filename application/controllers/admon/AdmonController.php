@@ -76,7 +76,7 @@ class AdmonController extends CI_Controller {
 
             if ($this -> user_model -> crearAlumno($data) == 1){
                 $this -> session -> set_userdata('message', '¡Alumno registrado!');
-                redirect($this->versionName.'/admon');
+				redirect($this->versionName.'/admon/index');
             } else {
                 $this -> session -> set_userdata('message', '¡Error al registrar alumno!');
             }

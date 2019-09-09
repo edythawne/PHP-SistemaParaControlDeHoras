@@ -11,6 +11,7 @@ class Admon_model extends CI_Model {
 
     // Join
     const inner = 'inner';
+	const left = 'left';
     const inner_join_alumno_w_horario = 'Alumnos.id_alumno = Horarios.fk_alumno';
 
     // Tabla Admon & Alumnos
@@ -58,7 +59,7 @@ class Admon_model extends CI_Model {
 
         $this -> db -> select(self::alumno_datos1);
         $this -> db -> from(self::tabla_alumno);
-        $this -> db -> join(self::tabla_horario, self::inner_join_alumno_w_horario, self::inner);
+        $this -> db -> join(self::tabla_horario, self::inner_join_alumno_w_horario, self::left);
         //$this -> db -> where(self::alumno_fk_alumno, $id);
         $this -> db -> where('Alumnos.estado', 'ACTIVO');
         $this -> db -> group_by('Alumnos.id_alumno');
