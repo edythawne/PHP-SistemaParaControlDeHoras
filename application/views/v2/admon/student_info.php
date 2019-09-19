@@ -178,7 +178,7 @@
 <script>
 	function openReport(id) {
 		var version = "<?php echo  $this -> config -> item('versionName'); ?>";
-		var url = "<?php echo base_url(); ?>/index.php/" + version + "/admon/report/f1/" + id;
+		var url = "<?php echo base_url(); ?>index.php/" + version + "/admon/report/f1/" + id;
         console.log('Project Version: ' + url);
         window.open(url, '_blank');
     }
