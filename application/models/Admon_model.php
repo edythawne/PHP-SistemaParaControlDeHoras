@@ -37,16 +37,21 @@ class Admon_model extends CI_Model {
      * @return mixed
      */
     public function buscarAdmon($user, $password){
-        $this -> load -> database();
+		$this -> load -> database();
 
-        $this -> db -> select(self::usuario_datos_1);
-        $this -> db -> where(self::usuario_usuario, $user);
-        $this -> db -> where(self::usuario_contrasena, $password);
-        $query = $this -> db -> get(self::tabla_admon);
-        $result =  $query -> result_array();
-        $this -> db -> close();
+		$this -> db -> select(self::usuario_datos_1);
+		$this -> db -> where(self::usuario_usuario, $user);
+		$this -> db -> where(self::usuario_contrasena, $password);
+		$query = $this -> db -> get(self::tabla_admon);
+		$result =  $query -> result_array();
 
-        return $result;
+		print_r($user."<b>".$password."<br>");
+		print_r($this->db->last_query());
+		print_r($result);
+
+		$this -> db -> close();
+
+		return $result;
     }
 
     /**

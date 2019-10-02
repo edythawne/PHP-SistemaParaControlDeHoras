@@ -89,3 +89,7 @@
     FROM Alumnos WHERE id_alumno = 3;
     
     SELECT @id_alumno, @nombre, @apellidos, @telefono, @estado, @tipo_servicio, @periodo, @duracion;
+    
+    
+    -- TEST
+    SELECT `id_admin`, `nombre`, `apellidos` FROM `Administradores` WHERE `usuario` = '69d72300b5b4cf697087a892d35ba47518817cc6' AND `contrasena` = '69d72300b5b4cf697087a892d35ba47518817cc6'

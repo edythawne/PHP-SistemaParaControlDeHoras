@@ -49,6 +49,9 @@ class LoginController extends CI_Controller {
             $pass = sha1($this -> input -> post('password'));
             $object = $this -> admon_model -> buscarAdmon($user, $pass);
 
+            print_r($object);
+
+            /**
             if (sizeof($object) > 0){
                 $session_data = array(
                     'id_admin' => $object[0]['id_admin'],
@@ -61,7 +64,7 @@ class LoginController extends CI_Controller {
                 redirect($this->versionName.'/admon/index');
             } else {
                 $this->index();
-            }
+            } **/
         }
     }
 }
