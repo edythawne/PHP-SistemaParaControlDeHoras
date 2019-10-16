@@ -8,7 +8,7 @@ class HomeController extends CI_Controller {
     private $versionName = 'v1';
 
     /**
-     * HomeController constructor.
+     * HomeController constructor!!
      */
     public function __construct(){
         parent::__construct();
